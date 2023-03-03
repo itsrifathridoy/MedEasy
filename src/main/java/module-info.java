@@ -5,6 +5,7 @@ module com.medeasy.medeasy {
     requires com.fasterxml.jackson.databind;
     requires java.mail;
     requires google.api.client;
+    requires com.jfoenix;
 
     opens com.medeasy.loginReg to javafx.fxml;
     exports com.medeasy.loginReg;
