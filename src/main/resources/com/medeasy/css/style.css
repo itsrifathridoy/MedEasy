@@ -26,6 +26,10 @@
     -fx-font-size: 15px;
     -fx-font-weight: bolder;
 }
+.btn:hover,.btn1:hover
+{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
 .btn1
 {
     -fx-padding: 10px 30px;
@@ -35,6 +39,7 @@
     -fx-font-size: 15px;
     -fx-font-weight: bolder;
 }
+
 #remember
 {
     -fx-text-fill: white;

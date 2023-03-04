@@ -28,7 +28,7 @@
                      </font></Label>
                   <TextField layoutX="59.0" layoutY="173.0" prefHeight="42.0" prefWidth="292.0" promptText="EMAIL" styleClass="input" />
                   <CheckBox fx:id="remember" layoutX="59.0" layoutY="320.0" mnemonicParsing="false" text="Remember me" />
-                  <Button layoutX="155.0" layoutY="382.0" mnemonicParsing="false" styleClass="btn1" text="Login" />
+                  <Button fx:id="login" layoutX="155.0" layoutY="382.0" mnemonicParsing="false" styleClass="btn1" text="Login" />
                   <TextField layoutX="59.0" layoutY="243.0" prefHeight="42.0" prefWidth="292.0" promptText="PASSWORD" styleClass="input" />
                </children>
             </AnchorPane>
@@ -37,7 +37,7 @@
             <AnchorPane prefHeight="480.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                <children>
                   <SVGPath content="M-432.7 0C-419.4 -41.5 -406.1 -82.9 -396.6 -128.9C-387.1 -174.8 -381.3 -225.1 -350 -254.3C-318.7 -283.5 -261.9 -291.5 -218.7 -301C-175.4 -310.4 -145.7 -321.2 -111.6 -343.3C-77.4 -365.5 -38.7 -399.1 0 -432.7L0 0Z" fill="#ff6267" layoutX="483.0" layoutY="519.0" styleClass="svg" />
-                  <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="450.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+                  <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="450.0" layoutY="7.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
                      <image>
                         <Image url="@../img/close.png" />
                      </image>
@@ -55,13 +55,13 @@
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <Button layoutX="194.0" layoutY="426.0" mnemonicParsing="false" onAction="#signup" styleClass="btn" text="Signup" />
-                  <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="390.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+                  <Button fx:id="signup" layoutX="194.0" layoutY="426.0" mnemonicParsing="false" onAction="#signup" styleClass="btn" text="Signup" />
+                  <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="390.0" layoutY="7.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
                      <image>
                         <Image url="@../img/minimize.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="29.0" fitWidth="23.0" layoutX="423.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+                  <ImageView fx:id="maximize" disable="true" fitHeight="29.0" fitWidth="23.0" layoutX="423.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
                      <image>
                         <Image url="@../img/maximize.png" />
                      </image>
