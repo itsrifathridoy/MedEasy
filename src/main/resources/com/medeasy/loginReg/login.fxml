@@ -1,51 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="769.0" style="-fx-background-color: #b0d9db;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.login">
-   <center>
-      <VBox alignment="CENTER" prefHeight="533.0" prefWidth="490.0" style="-fx-background-radius: 50 0 0 50; -fx-background-color: #ffff;" BorderPane.alignment="CENTER">
-         <children>
-            <TextField promptText="Email">
-               <VBox.margin>
-                  <Insets left="50.0" right="50.0" top="-100.0" />
-               </VBox.margin>
-            </TextField>
-            <PasswordField promptText="Password">
-               <VBox.margin>
-                  <Insets left="50.0" right="50.0" top="20.0" />
-               </VBox.margin>
-            </PasswordField>
-            <Button mnemonicParsing="false" text="login">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-         </children></VBox>
-   </center>
-   <left>
-      <VBox alignment="TOP_CENTER" prefHeight="538.0" prefWidth="361.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" prefHeight="150.0" prefWidth="362.0" text="MedEasy">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff0d" height="23.0" onMouseClicked="#createAccountEvent" stroke="BLACK" strokeType="INSIDE" width="179.0" />
-            <Label text="Create an account">
-               <VBox.margin>
-                  <Insets top="-21.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-   </left>
-</BorderPane>
+<AnchorPane prefHeight="647.0" prefWidth="1000.0" style="-fx-background-color: transparent;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.loginController">
+   <children>
+      <BorderPane layoutX="41.0" layoutY="63.0" prefHeight="519.0" prefWidth="918.0" style="-fx-background-color: white;">
+         <left>
+            <AnchorPane prefHeight="480.0" prefWidth="422.0" BorderPane.alignment="CENTER">
+               <children>
+                  <SVGPath content="M432.7 0C436.1 50.6 439.5 101.2 411.5 133.7C383.5 166.2 324.1 180.7 292.9 212.8C261.6 244.9 258.4 294.5 233.4 321.2C208.3 347.8 161.5 351.4 119 366.2C76.4 380.9 38.2 406.8 0 432.7L0 0Z" fill="#ff6267" styleClass="svg" />
+                  <Label layoutX="57.0" layoutY="73.0" text="Login" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="31.0" />
+                     </font></Label>
+                  <Label fx:id="text2" layoutX="59.0" layoutY="125.0" styleClass="text2" text="Please Login using your email and password" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField layoutX="59.0" layoutY="173.0" prefHeight="42.0" prefWidth="292.0" promptText="EMAIL" styleClass="input" />
+                  <CheckBox fx:id="remember" layoutX="59.0" layoutY="320.0" mnemonicParsing="false" text="Remember me" />
+                  <Button layoutX="155.0" layoutY="382.0" mnemonicParsing="false" styleClass="btn1" text="Login" />
+                  <TextField layoutX="59.0" layoutY="243.0" prefHeight="42.0" prefWidth="292.0" promptText="PASSWORD" styleClass="input" />
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="480.0" prefWidth="524.0" BorderPane.alignment="CENTER">
+               <children>
+                  <SVGPath content="M-432.7 0C-419.4 -41.5 -406.1 -82.9 -396.6 -128.9C-387.1 -174.8 -381.3 -225.1 -350 -254.3C-318.7 -283.5 -261.9 -291.5 -218.7 -301C-175.4 -310.4 -145.7 -321.2 -111.6 -343.3C-77.4 -365.5 -38.7 -399.1 0 -432.7L0 0Z" fill="#ff6267" layoutX="483.0" layoutY="519.0" styleClass="svg" />
+                  <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="450.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+                     <image>
+                        <Image url="@../img/close.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="321.0" fitWidth="338.0" layoutX="73.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/juicy-insurance.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="107.0" layoutY="50.0" text="Welcome to MedEasy">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font></Label>
+                  <Label fx:id="text" layoutX="86.0" layoutY="108.0" text="If you don't you have an account, create new one">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Button layoutX="194.0" layoutY="426.0" mnemonicParsing="false" onAction="#signup" styleClass="btn" text="Signup" />
+                  <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="390.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+                     <image>
+                        <Image url="@../img/minimize.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="29.0" fitWidth="23.0" layoutX="423.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+                     <image>
+                        <Image url="@../img/maximize.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
