@@ -12,6 +12,9 @@ target/
 *.iml
 *.ipr
 
+#dotEnv
+.env
+
 ### Eclipse ###
 .apt_generated
 .classpath

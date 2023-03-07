@@ -1,5 +1,6 @@
 package com.medeasy.loginReg;
 
+import com.jfoenix.assets.JFoenixResources;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class loginController implements Initializable {
-
 
     public ImageView maximize;
 
@@ -45,4 +45,11 @@ public class loginController implements Initializable {
         stage.setIconified(true);
     }
 
+    public void login(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("detailsView.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 }
