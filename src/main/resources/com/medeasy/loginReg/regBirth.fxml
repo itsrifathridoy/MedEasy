@@ -1,44 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="769.0" style="-fx-background-color: #b0d9db;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.RegBirthController">
-    <left>
-        <VBox alignment="CENTER" prefHeight="533.0" prefWidth="490.0" style="-fx-background-radius: 50 0 0 50; -fx-background-color: #ffff;" BorderPane.alignment="CENTER">
-            <children>
-                <TextField fx:id="bId" promptText="Birth Certificate Number">
-                    <VBox.margin>
-                        <Insets left="50.0" right="50.0" top="-100.0" />
-                    </VBox.margin>
-                </TextField>
-            <DatePicker fx:id="dob">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </DatePicker>
-                <Button mnemonicParsing="false" onAction="#nextDetailsView" prefHeight="26.0" prefWidth="57.0" text="Next">
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </Button>
-            </children></VBox>
-    </left>
-    <center>
-        <VBox alignment="TOP_CENTER" prefHeight="538.0" prefWidth="354.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label alignment="CENTER" prefHeight="150.0" prefWidth="362.0" text="MedEasy">
-                    <font>
-                        <Font size="22.0" />
-                    </font>
-                </Label>
-            </children>
-        </VBox>
-    </center>
+<BorderPane prefHeight="519.0" prefWidth="918.0" style="-fx-background-color: white;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.RegBirthController">
+   <left>
+      <AnchorPane prefHeight="480.0" prefWidth="422.0" BorderPane.alignment="CENTER">
+         <children>
+            <SVGPath content="M432.7 0C436.1 50.6 439.5 101.2 411.5 133.7C383.5 166.2 324.1 180.7 292.9 212.8C261.6 244.9 258.4 294.5 233.4 321.2C208.3 347.8 161.5 351.4 119 366.2C76.4 380.9 38.2 406.8 0 432.7L0 0Z" styleClass="svg">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.09019608050584793" green="0.12156862765550613" blue="0.1882352977991104" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.5235531628532973">
+                           <color>
+                              <Color red="0.32549020648002625" green="0.5372549295425415" blue="0.6509804129600525" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.6509804129600525" green="0.8627451062202454" blue="0.9333333373069763" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill></SVGPath>
+            <Label layoutX="57.0" layoutY="73.0" text="Birth Certificate Query" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Label>
+            <Label fx:id="text2" layoutX="59.0" layoutY="125.0" styleClass="text2" text="Enter your birth certificate number to get info" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="bId" layoutX="59.0" layoutY="187.0" prefHeight="42.0" prefWidth="292.0" promptText="Birth Certificate Number" styleClass="input" />
+            <Button layoutX="155.0" layoutY="369.0" mnemonicParsing="false" onAction="#nextDetailsView" styleClass="btn1" text="Search" />
+            <MFXDatePicker fx:id="dob" layoutX="60.0" layoutY="260.0" prefHeight="43.0" prefWidth="289.0" promptText="Date Of Birth" styleClass="input" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="480.0" prefWidth="524.0" BorderPane.alignment="CENTER">
+         <children>
+            <SVGPath content="M-432.7 0C-419.4 -41.5 -406.1 -82.9 -396.6 -128.9C-387.1 -174.8 -381.3 -225.1 -350 -254.3C-318.7 -283.5 -261.9 -291.5 -218.7 -301C-175.4 -310.4 -145.7 -321.2 -111.6 -343.3C-77.4 -365.5 -38.7 -399.1 0 -432.7L0 0Z" layoutX="483.0" layoutY="519.0" styleClass="svg">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.6509804129600525" green="0.8627451062202454" blue="0.9333333373069763" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.49663526244952894">
+                           <color>
+                              <Color red="0.32549020648002625" green="0.5372549295425415" blue="0.6509804129600525" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.09019608050584793" green="0.12156862765550613" blue="0.1882352977991104" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill></SVGPath>
+            <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="450.0" layoutY="7.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+               <image>
+                  <Image url="@../img/close.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="321.0" fitWidth="338.0" layoutX="73.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/juicy-insurance.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="107.0" layoutY="50.0" text="Welcome to MedEasy">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="text" layoutX="86.0" layoutY="108.0" text="If you don't you have an account, create new one">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="390.0" layoutY="7.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+               <image>
+                  <Image url="@../img/minimize.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="maximize" disable="true" fitHeight="29.0" fitWidth="23.0" layoutX="423.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+               <image>
+                  <Image url="@../img/maximize.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

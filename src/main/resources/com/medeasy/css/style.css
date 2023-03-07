@@ -61,3 +61,13 @@
 {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
 }
+.detailsBody
+{
+    -fx-background-color: #cee7f5;
+    -fx-effect: dropshadow(three-pass-box, #171f30, 10, 0, 0, 0);
+}
+.outputfield
+{
+    -fx-border-color: #ff6267;
+    -fx-border-width: 0 0 1 0;
+}

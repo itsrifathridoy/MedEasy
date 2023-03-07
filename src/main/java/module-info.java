@@ -6,6 +6,7 @@ module com.medeasy.medeasy {
     requires java.mail;
     requires google.api.client;
     requires com.jfoenix;
+    requires MaterialFX;
 
     opens com.medeasy.loginReg to javafx.fxml;
     exports com.medeasy.loginReg;

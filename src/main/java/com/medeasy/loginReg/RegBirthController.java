@@ -7,16 +7,22 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 public class RegBirthController {
     public TextField bId;
-    public DatePicker dob;
     public static Patient patient;
+    public ImageView maximize;
+    public Label text;
+    public MFXDatePicker dob;
+
     public void nextDetailsView(ActionEvent actionEvent) throws IOException {
         String dateFormat = dob.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         System.out.println(bId.getText());
@@ -39,5 +45,15 @@ public class RegBirthController {
             alert.show();
         }
 
+    }
+
+    public void close(MouseEvent me) {
+        Stage stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    public void minimize(MouseEvent me) {
+        Stage stage = (Stage) ((Node) me.getSource()).getScene().getWindow();
+        stage.setIconified(true);
     }
 }
