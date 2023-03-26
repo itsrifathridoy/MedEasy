@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="800.0" style="-fx-background-image: istockphoto-1368151370-170667a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="550.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@istockphoto-1368151370-170667a.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="24.0" layoutY="25.0" prefHeight="480.0" prefWidth="437.0" style="-fx-background-color: #307D7E;">
+         <children>
+            <Text fill="#eeebeb" layoutX="200.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verify Your Identity" wrappingWidth="193.13671875">
+               <VBox.margin>
+                  <Insets left="110.0" top="22.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <TextField prefHeight="32.0" prefWidth="368.0" text="E-mail :">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" text="Send Verification Code" textFill="#141313">
+               <VBox.margin>
+                  <Insets left="120.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField prefHeight="32.0" prefWidth="368.0" text="Verification Code :">
+               <VBox.margin>
+                  <Insets top="45.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </TextField>
+            <TextField prefHeight="33.0" prefWidth="368.0" text="Password :">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField prefHeight="35.0" prefWidth="368.0" text=" Confirm Password :">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" text="Creat Your Account" textFill="#170101">
+               <VBox.margin>
+                  <Insets left="130.0" top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <ImageView fitHeight="184.0" fitWidth="262.0" layoutX="556.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@two-step-verification-gmail.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="194.0" fitWidth="262.0" layoutX="442.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@pngtree-fa-two-steps-authentication-password-secure-notice-login-verification-or-sms-png-image_4746691.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="135.0" fitWidth="145.0" layoutX="396.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@istockphoto-1369134714-612x612.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
