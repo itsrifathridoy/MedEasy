@@ -2,6 +2,7 @@ package com.medeasy.users;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.concurrent.Task;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,8 +10,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 
-public class Patient{
+public class Patient {
+    private String bId;
     private String name;
     private String dob;
     private String fatherNameBn;
@@ -30,10 +33,7 @@ public class Patient{
         this.officeNameBn = officeNameBn;
         this.officeNameEn = officeNameEn;
     }
-    public Patient(String bId,String dob)
-    {
-        getPatientInfoFromApi(bId,dob);
-    }
+
 
 
     public String getPatientName() {
@@ -105,16 +105,16 @@ public class Patient{
         return "Person [name: "+ name+  " Date Of Birth: " + dob + " Father's Name: " + fatherNameBn + " Mother's Name: "+ motherNameBn;
     }
 
-    public static Patient getPatientInfoFromApi(String bId,String dob ){
+    public static Patient getPatientInfoFromApi(String bId, String dob){
         BufferedReader reader;
         String line;
         StringBuffer responseContent = new StringBuffer ( ) ;
         try {
-            URL url = new URL("https://script.google.com/macros/s/AKfycbzUec7v8t3pAVEPAu02GifzPt0VXHN8k3dzjOZXezOSZptsV_1zjvYHG0Cj8Od5aW0h_w/exec?bid="+bId+"&dob="+dob);
+            URL url = new URL("https://bidapi.airamtafir.workers.dev/"+ bId+ "/"+dob);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setConnectTimeout(50000);
-            connection.setReadTimeout(50000);
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
             int status = connection.getResponseCode();
 
             if (status > 299) {
@@ -130,10 +130,17 @@ public class Patient{
                 }
                 reader.close();
 
-                JsonNode statusCode = new ObjectMapper().readTree(responseContent.toString()).get("status");
-                if(statusCode.asInt()==200) {
-                    JsonNode data = new ObjectMapper().readTree(responseContent.toString()).get("data");
-                    Patient patient = new Patient(data.get("name").textValue(), data.get("dob").textValue(), data.get("fatherNameBn").textValue(), data.get("motherNameBn").textValue(), data.get("addressBn").textValue(), data.get("addressEn").textValue(), data.get("officeNameBn").textValue(), data.get("officeNameEn").textValue());
+                //JsonNode statusCode = new ObjectMapper().readTree(responseContent.toString()).get("aaData");
+//
+                JsonNode node = new ObjectMapper().readTree(responseContent.toString()).get("aaData");
+                Iterator<JsonNode> it = node.iterator();
+                JsonNode data=null;
+                if(it.hasNext())
+                {
+                    data = it.next();
+                }
+                if(data!=null) {
+                    Patient patient = new Patient(data.get("personNameBn").textValue(), data.get("personBirthDate").textValue(), data.get("fatherNameBn").textValue(), data.get("motherNameBn").textValue(), data.get("fullGeolocationAddressBn").textValue(), data.get("fullGeolocationAddressEn").textValue(), data.get("officeNameBn").textValue(), data.get("officeNameEn").textValue());
                     return patient;
                 }
                 else
@@ -154,4 +161,5 @@ public class Patient{
 
         return null;
     }
+
 }
