@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="918.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #171f30 0.0%, #5389a6 52.3553%, #a6dcee 100.0%);" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.DetailsViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="918.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #171f30 0.0%, #5389a6 52.3553%, #a6dcee 100.0%);" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="118.0" layoutY="75.0" prefHeight="369.0" prefWidth="682.0" styleClass="detailsBody">
          <children>

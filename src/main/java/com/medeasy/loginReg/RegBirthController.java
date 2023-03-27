@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 
 public class RegBirthController {
     public TextField bId;
-    public static Patient patient;
+    public Patient patient;
     public ImageView maximize;
     public Label text;
     public MFXDatePicker dob;
@@ -28,12 +28,14 @@ public class RegBirthController {
         System.out.println(bId.getText());
         System.out.println(dateFormat);
         patient = Patient.getPatientInfoFromApi(bId.getText(),dateFormat);
-
         if(patient!=null)
         {
             System.out.println(patient);
-
-            Parent root = FXMLLoader.load(getClass().getResource("detailsView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("detailsView.fxml"));
+            DetailsViewController controller = new DetailsViewController();
+            controller.setPatient(patient);
+            loader.setController(controller);
+            Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);

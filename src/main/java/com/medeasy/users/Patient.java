@@ -22,6 +22,9 @@ public class Patient {
     private String addressEn;
     private String officeNameBn;
     private String officeNameEn;
+    private String username;
+    private String email;
+
 
     public Patient(String name, String dob, String fatherNameBn, String motherNameBn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
         this.name = name;
@@ -33,8 +36,54 @@ public class Patient {
         this.officeNameBn = officeNameBn;
         this.officeNameEn = officeNameEn;
     }
+    public Patient(String bId,String name, String dob, String fatherNameBn, String motherNameBn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
+        this.name = name;
+        this.dob = dob;
+        this.bId = bId;
+        this.fatherNameBn = fatherNameBn;
+        this.motherNameBn = motherNameBn;
+        this.addressBn = addressBn;
+        this.addressEn = addressEn;
+        this.officeNameBn = officeNameBn;
+        this.officeNameEn = officeNameEn;
+    }
 
+    public Patient(Patient patient,String username,String email)
 
+    {
+        this.name = patient.name;
+        this.bId = patient.bId;
+        this.dob = patient.dob;
+        this.fatherNameBn = patient.fatherNameBn;
+        this.motherNameBn = patient.motherNameBn;
+        this.addressBn = patient.addressBn;
+        this.addressEn = patient.addressEn;
+        this.officeNameBn = patient.officeNameBn;
+        this.officeNameEn = patient.officeNameEn;
+        this.username = username;
+        this.email = email;
+
+    }
+
+    public String getbId() {
+        return bId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getPatientName() {
         return name;
@@ -113,8 +162,8 @@ public class Patient {
             URL url = new URL("https://bidapi.airamtafir.workers.dev/"+ bId+ "/"+dob);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
+            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(15000);
             int status = connection.getResponseCode();
 
             if (status > 299) {
@@ -140,7 +189,8 @@ public class Patient {
                     data = it.next();
                 }
                 if(data!=null) {
-                    Patient patient = new Patient(data.get("personNameBn").textValue(), data.get("personBirthDate").textValue(), data.get("fatherNameBn").textValue(), data.get("motherNameBn").textValue(), data.get("fullGeolocationAddressBn").textValue(), data.get("fullGeolocationAddressEn").textValue(), data.get("officeNameBn").textValue(), data.get("officeNameEn").textValue());
+
+                    Patient patient = new Patient(bId,data.get("personNameBn").textValue(), data.get("personBirthDate").textValue(), data.get("fatherNameBn").textValue(), data.get("motherNameBn").textValue(), data.get("fullGeolocationAddressBn").textValue(), data.get("fullGeolocationAddressEn").textValue(), data.get("officeNameBn").textValue(), data.get("officeNameEn").textValue());
                     return patient;
                 }
                 else
