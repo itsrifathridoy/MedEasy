@@ -7,6 +7,9 @@ module com.medeasy.medeasy {
     requires com.jfoenix;
     requires MaterialFX;
     requires io.github.cdimascio.dotenv.java;
+    requires twilio;
+    requires mysql.connector.j;
+    requires java.sql;
 
     opens com.medeasy.loginReg to javafx.fxml;
     exports com.medeasy.loginReg;
