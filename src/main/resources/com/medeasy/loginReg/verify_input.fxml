@@ -73,6 +73,21 @@
                   <Font size="17.0" />
                </font>
             </Label>
+            <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="888.0" layoutY="2.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+               <image>
+                  <Image url="@../img/close.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="828.0" layoutY="2.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+               <image>
+                  <Image url="@../img/minimize.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="maximize" disable="true" fitHeight="29.0" fitWidth="23.0" layoutX="861.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+               <image>
+                  <Image url="@../img/maximize.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Pane fx:id="contentArea" prefHeight="417.0" prefWidth="918.0" stylesheets="@../css/style.css">

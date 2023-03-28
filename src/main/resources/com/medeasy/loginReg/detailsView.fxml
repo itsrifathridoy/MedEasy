@@ -73,17 +73,17 @@
             <Image url="@../img/3d-casual-life-looking-for-an-employee-online.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="882.0" layoutY="8.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="889.0" layoutY="2.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
          <image>
             <Image url="@../img/close.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="822.0" layoutY="8.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+      <ImageView fitHeight="29.0" fitWidth="34.0" layoutX="829.0" layoutY="2.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
          <image>
             <Image url="@../img/minimize.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="maximize" disable="true" fitHeight="29.0" fitWidth="23.0" layoutX="855.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
+      <ImageView fx:id="maximize" disable="true" fitHeight="29.0" fitWidth="23.0" layoutX="862.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="controlBtn">
          <image>
             <Image url="@../img/maximize.png" />
          </image>
