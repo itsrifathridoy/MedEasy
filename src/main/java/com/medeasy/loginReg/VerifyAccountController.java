@@ -4,16 +4,19 @@ import com.medeasy.DatabaseConnection;
 import com.medeasy.Encryption;
 import com.medeasy.users.Patient;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 
 public class VerifyAccountController {
 
@@ -33,36 +36,70 @@ public class VerifyAccountController {
         this.img3 = img3;
     }
 
-    public void createAccount(ActionEvent actionEvent) {
+    public void createAccount(ActionEvent actionEvent) throws SQLException, IOException {
 
         if (password.getText().equals(confirmPassword.getText())) {
             String sql = "INSERT INTO patients (bId, name, fatherNameBn, motherNameBn, dob, email, addressBn, addressEn, officeNameBn, officeNameEn, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql2 = "SELECT COUNT(1) FROM patients WHERE bId = '"+patient.getbId()+"'";
 
             DatabaseConnection db = new DatabaseConnection();
             Connection connection = db.getConnection();
-            try {
-                PreparedStatement statement = connection.prepareStatement(sql);
-
-                statement.setString(1, patient.getbId());
-                statement.setString(2, patient.getPatientName());
-                statement.setString(3, patient.getFatherNameBn());
-                statement.setString(4, patient.getMotherNameBn());
-                statement.setString(5, patient.getDob());
-                statement.setString(6, patient.getEmail());
-                statement.setString(7, patient.getAddressBn());
-                statement.setString(8, patient.getAddressEn());
-                statement.setString(9, patient.getOfficeNameBn());
-                statement.setString(10, patient.getOfficeNameEn());
-                statement.setString(11, patient.getUsername());
-                String encryptedSecret = new Encryption().getEncryptedKey(password.getText());
-                statement.setString(12, encryptedSecret);
-                int rowsInserted = statement.executeUpdate();
-                if (rowsInserted > 0) {
-                    System.out.println("A new patient has been inserted.");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            Statement statement1 = connection.createStatement();
+            ResultSet resultSet = statement1.executeQuery(sql2);
+            int count = 0;
+            if (resultSet.next()) {
+                count = resultSet.getInt(1);
+                System.out.println("The count is: " + count);
             }
+            if (count==0)
+            {
+                try {
+                    PreparedStatement statement = connection.prepareStatement(sql);
+
+                    statement.setString(1, patient.getbId());
+                    statement.setString(2, patient.getPatientName());
+                    statement.setString(3, patient.getFatherNameBn());
+                    statement.setString(4, patient.getMotherNameBn());
+                    statement.setString(5, patient.getDob());
+                    statement.setString(6, patient.getEmail());
+                    statement.setString(7, patient.getAddressBn());
+                    statement.setString(8, patient.getAddressEn());
+                    statement.setString(9, patient.getOfficeNameBn());
+                    statement.setString(10, patient.getOfficeNameEn());
+                    statement.setString(11, patient.getUsername());
+                    String encryptedSecret = new Encryption().getEncryptedKey(password.getText());
+                    statement.setString(12, encryptedSecret);
+                    int rowsInserted = statement.executeUpdate();
+                    if (rowsInserted > 0) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+                        Parent root = loader.load();
+                        HomeController homeController = loader.getController();
+                        homeController.setEmail(patient.getEmail());
+                        Scene scene = new Scene(root);
+                        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.centerOnScreen();
+                        stage.show();
+                        System.out.println("A new patient has been inserted.");
+                    }
+                    else
+                    {
+                        Alert alert = new Alert(Alert.AlertType.ERROR,"Email already available on db");
+                        alert.show();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else
+            {
+                System.out.println("Create account Failed");
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Account already created");
+                alert.show();
+            }
+
         } else {
             System.out.println("Please Enter Your Password");
         }
