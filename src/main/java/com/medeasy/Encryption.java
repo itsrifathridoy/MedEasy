@@ -15,7 +15,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 public class Encryption {
-
     private Key initEncryption() throws Exception
     {
         KeyStore keyStore = KeyStore.getInstance("JCEKS");

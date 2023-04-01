@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="519.0" prefWidth="918.0" style="-fx-background-color: white;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.RegBirthController">
+<BorderPane prefHeight="519.0" prefWidth="918.0" style="-fx-background-color: white;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.RegBirthController">
    <left>
       <AnchorPane prefHeight="480.0" prefWidth="422.0" BorderPane.alignment="CENTER">
          <children>
@@ -51,8 +52,27 @@
                </font>
             </Label>
             <TextField fx:id="bId" layoutX="59.0" layoutY="187.0" prefHeight="42.0" prefWidth="292.0" promptText="Birth Certificate Number" styleClass="input" />
-            <Button layoutX="155.0" layoutY="369.0" mnemonicParsing="false" onAction="#nextDetailsView" styleClass="btn1" text="Search" />
+            <Button layoutX="155.0" layoutY="394.0" minHeight="41.6" minWidth="107.2" mnemonicParsing="false" onAction="#nextDetailsView" styleClass="btn1" text="Search" />
             <MFXDatePicker fx:id="dob" layoutX="60.0" layoutY="260.0" prefHeight="43.0" prefWidth="289.0" promptText="Date Of Birth" styleClass="input" />
+            <MFXProgressSpinner fx:id="loader" layoutX="193.0" layoutY="401.0" prefHeight="26.0" prefWidth="31.0">
+               <color2>
+                  <Color red="0.8004629611968994" green="0.949999988079071" blue="0.8852006196975708" />
+               </color2>
+               <color3>
+                  <Color red="0.928947389125824" green="0.9119740128517151" blue="0.865297257900238" />
+               </color3>
+               <color4>
+                  <Color red="0.9133186936378479" green="0.9174855947494507" blue="0.9184210300445557" />
+               </color4>
+               <color1>
+                  <Color red="0.7839912176132202" green="0.8113121390342712" blue="0.8552631735801697" />
+               </color1>
+            </MFXProgressSpinner>
+            <ImageView fx:id="successImg" fitHeight="34.0" fitWidth="50.0" layoutX="192.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons8_ok_480px.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </left>
