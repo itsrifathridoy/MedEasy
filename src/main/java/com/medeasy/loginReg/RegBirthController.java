@@ -1,8 +1,10 @@
 package com.medeasy.loginReg;
 
+import com.medeasy.Main;
 import com.medeasy.PatientApiCallTask;
 import com.medeasy.users.Patient;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,6 +40,9 @@ public class RegBirthController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loader.setVisible(false);
         successImg.setVisible(false);
+        Platform.runLater(()->{
+            Main.enableMove(bId.getScene(),(Stage) bId.getScene().getWindow());
+        });
     }
 
     public void nextDetailsView(ActionEvent actionEvent) throws IOException {

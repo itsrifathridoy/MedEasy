@@ -26,6 +26,10 @@ public class Patient {
     private String email;
 
 
+    public Patient()
+    {
+
+    }
     public Patient(String name, String dob, String fatherNameBn, String motherNameBn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
         this.name = name;
         this.dob = dob;
@@ -67,6 +71,10 @@ public class Patient {
 
     public String getbId() {
         return bId;
+    }
+
+    public void setbId(String bId) {
+        this.bId = bId;
     }
 
     public String getUsername() {

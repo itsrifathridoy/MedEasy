@@ -2,6 +2,8 @@ package com.medeasy.loginReg;
 
 import com.medeasy.DatabaseConnection;
 import com.medeasy.Encryption;
+import com.medeasy.Main;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-public class loginController implements Initializable {
+public class LoginController implements Initializable {
 
     public ImageView maximize;
     public TextField email;
@@ -33,6 +34,9 @@ public class loginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         maximize.setOpacity(0.5);
+        Platform.runLater(()->{
+            Main.enableMove(email.getScene(),(Stage) email.getScene().getWindow());
+        });
 
     }
 

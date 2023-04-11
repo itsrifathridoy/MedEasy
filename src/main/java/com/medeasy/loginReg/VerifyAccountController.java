@@ -2,9 +2,12 @@ package com.medeasy.loginReg;
 
 import com.medeasy.DatabaseConnection;
 import com.medeasy.Encryption;
+import com.medeasy.Main;
 import com.medeasy.users.Patient;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +19,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
-public class VerifyAccountController {
+public class VerifyAccountController implements Initializable {
 
     public TextField password;
     public TextField confirmPassword;
@@ -27,6 +32,13 @@ public class VerifyAccountController {
     public ImageView img2;
     public ImageView img3;
     public Pane contentArea;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(()->{
+            Main.enableMove(contentArea.getScene(),(Stage) contentArea.getScene().getWindow());
+        });
+    }
 
     public void setData(Patient patient, Pane contentArea, ImageView img1, ImageView img2, ImageView img3) {
         this.patient = patient;

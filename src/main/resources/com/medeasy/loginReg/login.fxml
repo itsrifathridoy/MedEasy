@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="519.0" prefWidth="918.0" style="-fx-background-color: white;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.loginController">
+<BorderPane prefHeight="519.0" prefWidth="918.0" style="-fx-background-color: white;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.LoginController">
    <left>
       <AnchorPane prefHeight="480.0" prefWidth="422.0" BorderPane.alignment="CENTER">
          <children>
