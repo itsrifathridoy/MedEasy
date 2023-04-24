@@ -26,6 +26,10 @@ public class Patient {
     private String email;
 
 
+    public Patient()
+    {
+
+    }
     public Patient(String name, String dob, String fatherNameBn, String motherNameBn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
         this.name = name;
         this.dob = dob;
@@ -67,6 +71,10 @@ public class Patient {
 
     public String getbId() {
         return bId;
+    }
+
+    public void setbId(String bId) {
+        this.bId = bId;
     }
 
     public String getUsername() {
@@ -152,64 +160,6 @@ public class Patient {
     @Override
     public String toString() {
         return "Person [name: "+ name+  " Date Of Birth: " + dob + " Father's Name: " + fatherNameBn + " Mother's Name: "+ motherNameBn;
-    }
-
-    public static Patient getPatientInfoFromApi(String bId, String dob){
-        BufferedReader reader;
-        String line;
-        StringBuffer responseContent = new StringBuffer ( ) ;
-        try {
-            URL url = new URL("https://bidapi.airamtafir.workers.dev/"+ bId+ "/"+dob);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(15000);
-            connection.setReadTimeout(15000);
-            int status = connection.getResponseCode();
-
-            if (status > 299) {
-                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                    reader.close();
-                }
-            } else {
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
-
-                //JsonNode statusCode = new ObjectMapper().readTree(responseContent.toString()).get("aaData");
-//
-                JsonNode node = new ObjectMapper().readTree(responseContent.toString()).get("aaData");
-                Iterator<JsonNode> it = node.iterator();
-                JsonNode data=null;
-                if(it.hasNext())
-                {
-                    data = it.next();
-                }
-                if(data!=null) {
-
-                    Patient patient = new Patient(bId,data.get("personNameBn").textValue(), data.get("personBirthDate").textValue(), data.get("fatherNameBn").textValue(), data.get("motherNameBn").textValue(), data.get("fullGeolocationAddressBn").textValue(), data.get("fullGeolocationAddressEn").textValue(), data.get("officeNameBn").textValue(), data.get("officeNameEn").textValue());
-                    return patient;
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-        }
-        catch (MalformedURLException e) {
-            e.printStackTrace();
-
-        }catch (IOException e)
-        {
-            e.printStackTrace ( ) ;
-        }
-
-
-        return null;
     }
 
 }

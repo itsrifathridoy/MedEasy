@@ -16,6 +16,7 @@ import java.util.Base64;
 
 public class Encrept {
     public static void main(String[] args) throws Exception {
+
 //        try {
 //                KeyStore keyStore = KeyStore.getInstance("JCEKS");
 //                FileInputStream stream =  new FileInputStream("mykeystore.jks");
@@ -31,8 +32,8 @@ public class Encrept {
 //    }
 
         Encryption en = new Encryption();
-        String str = en.getEncryptedKey("Rifat");
-        System.out.println(en.getDecryptedKey("JiPnstpy3QzhA2bQBb3eqQ=="));
+        String str = en.getEncryptedKey("Rifat3566");
+        System.out.println(str);
 }
 
 //    private static String decryptUsingASEKey(String data, byte[] key) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {

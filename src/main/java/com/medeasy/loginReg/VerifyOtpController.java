@@ -1,9 +1,12 @@
 package com.medeasy.loginReg;
 
+import com.medeasy.Main;
 import com.medeasy.users.Patient;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
@@ -18,8 +21,10 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class VerifyOtpController {
+public class VerifyOtpController implements Initializable {
     public HBox verifyBox;
     public ImageView img1;
     public ImageView img2;
@@ -27,6 +32,13 @@ public class VerifyOtpController {
     public String code;
     public Pane contentArea;
     public Patient patient;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(()->{
+            Main.enableMove(contentArea.getScene(),(Stage) contentArea.getScene().getWindow());
+        });
+    }
 
     public void setData(Patient patient, String code, Pane contentArea, ImageView img1, ImageView img2, ImageView img3)
     {

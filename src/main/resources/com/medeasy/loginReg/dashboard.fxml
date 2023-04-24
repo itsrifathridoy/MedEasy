@@ -12,9 +12,9 @@
 
 <AnchorPane opacity="0.65" prefHeight="717.0" prefWidth="1184.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.loginReg.HomeController">
    <children>
-      <Pane layoutX="8.0" layoutY="-1.0" prefHeight="717.0" prefWidth="1177.0" style="-fx-background-color: BACBD0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="8.0" layoutY="26.0" prefHeight="691.0" prefWidth="1184.0" style="-fx-background-color: BACBD0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="719.0" prefWidth="95.0" style="-fx-background-color: #38A6BE;">
+            <Pane prefHeight="719.0" prefWidth="95.0" style="-fx-background-color: #2262d9;">
                <children>
                   <Pane layoutX="28.0" layoutY="94.0" prefHeight="557.0" prefWidth="39.0">
                      <children>
@@ -75,14 +75,14 @@
             </Pane>
             <Pane layoutX="434.0" layoutY="-1.0" prefHeight="717.0" prefWidth="750.0" style="-fx-background-color: F5FDFF;">
                <children>
-                  <Pane layoutX="236.0" layoutY="289.0" prefHeight="208.0" prefWidth="500.0" style="-fx-background-color: A9D1CA; -fx-background-radius: 20;">
+                  <Pane layoutX="236.0" layoutY="242.0" prefHeight="255.0" prefWidth="500.0" style="-fx-background-color: A9D1CA; -fx-background-radius: 20;">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" text="Statistic of your health" textFill="#1a4561">
                            <font>
                               <Font name="Monospaced Bold" size="17.0" />
                            </font>
                         </Label>
-                        <ToggleButton layoutX="341.0" layoutY="8.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: #4184A9; -fx-background-radius: 10 0 0 10;" text="Year" textFill="WHITE">
+                        <ToggleButton layoutX="341.0" layoutY="8.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: #2262d9; -fx-background-radius: 10 0 0 10;" text="Year" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -95,7 +95,7 @@
                      </children></Pane>
                   <Pane layoutX="45.0" layoutY="36.0" opacity="0.58" prefHeight="187.0" prefWidth="681.0" style="-fx-background-color: #38A6BE; -fx-background-radius: 20;">
                      <children>
-                        <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="481.0" layoutY="37.0">
+                        <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="481.0" layoutY="11.0">
                            <image>
                               <Image url="@../img/boba-perfect-candidate-resume-searching-online.png" />
                            </image>
@@ -110,7 +110,7 @@
                               <Font name="Monospaced Bold" size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nameLabel" layoutX="261.0" layoutY="12.0" prefHeight="51.0" prefWidth="242.0" text="Name" textFill="WHITE">
+                        <Label fx:id="name2" layoutX="261.0" layoutY="11.0" prefHeight="51.0" prefWidth="242.0" text="Name" textFill="WHITE">
                            <font>
                               <Font name="Monospaced Bold" size="30.0" />
                            </font>
@@ -155,7 +155,7 @@
                         <Pane layoutX="10.0" layoutY="113.0" opacity="0.51" prefHeight="43.0" prefWidth="236.0" style="-fx-border-color: #4C5354; -fx-border-radius: 10; -fx-border-width: 2;" />
                      </children>
                   </Pane>
-                  <Pane layoutX="45.0" layoutY="235.0" opacity="0.73" prefHeight="255.0" prefWidth="181.0" style="-fx-background-color: #4184A9; -fx-background-radius: 10;">
+                  <Pane layoutX="45.0" layoutY="245.0" opacity="0.73" prefHeight="255.0" prefWidth="181.0" style="-fx-background-color: #2262d9; -fx-background-radius: 10;">
                      <children>
                         <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="24.0" prefWidth="144.0" text="Health Index" textFill="WHITE">
                            <font>
@@ -190,9 +190,9 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="121.0" layoutY="92.0" prefHeight="224.0" prefWidth="286.0" style="-fx-background-color: F5FDFF; -fx-background-radius: 20;">
+            <Pane layoutX="121.0" layoutY="92.0" prefHeight="224.0" prefWidth="302.0" style="-fx-background-color: F5FDFF; -fx-background-radius: 20;">
                <children>
-                  <JFXButton fx:id="donorbtn" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="15.0" layoutY="144.0" prefHeight="66.0" prefWidth="257.0" style="-fx-background-color: #4184A9; -fx-background-radius: 10;" text="Find a blood donor" textFill="WHITE">
+                  <JFXButton fx:id="donorbtn" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="15.0" layoutY="144.0" prefHeight="66.0" prefWidth="257.0" style="-fx-background-color: #2262d9; -fx-background-radius: 10;" text="Find a blood donor" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -202,30 +202,50 @@
                         <Image url="@../img/icons8-donor-card-100 (1).png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="15.0" layoutY="14.0" text="Age : " textFill="#536c99a6">
+                  <Label layoutX="15.0" layoutY="14.0" text="Age : " textFill="#2277af">
                      <font>
                         <Font name="Monospaced Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="44.0" text="Bloode Group: " textFill="#536c99a6">
+                  <Label layoutX="15.0" layoutY="44.0" text="Blood Group: " textFill="#2378ad">
                      <font>
                         <Font name="Monospaced Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="76.0" text="Height (cm): " textFill="#536c99a7">
+                  <Label layoutX="15.0" layoutY="76.0" text="Height (cm): " textFill="#2378ad">
                      <font>
                         <Font name="Monospaced Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="106.0" text="Weight (kg) : " textFill="#536c99a8">
+                  <Label layoutX="15.0" layoutY="106.0" text="Weight (kg) : " textFill="#2378ad">
+                     <font>
+                        <Font name="Monospaced Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="age" layoutX="70.0" layoutY="14.0" text="age" textFill="#536c99a6">
+                     <font>
+                        <Font name="Monospaced Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="bloodGroup" layoutX="141.0" layoutY="44.0" text="bloodGroup" textFill="#536c99a6">
+                     <font>
+                        <Font name="Monospaced Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="132.0" layoutY="76.0" text="height" textFill="#536c99a7">
+                     <font>
+                        <Font name="Monospaced Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="weight" layoutX="141.0" layoutY="106.0" text="null" textFill="#536c99a8">
                      <font>
                         <Font name="Monospaced Bold" size="15.0" />
                      </font>
                   </Label>
                </children></Pane>
-            <Pane layoutX="118.0" layoutY="344.0" prefHeight="350.0" prefWidth="292.0" style="-fx-background-color: F5FDFF; -fx-background-radius: 20;">
+            <Pane layoutX="118.0" layoutY="344.0" prefHeight="350.0" prefWidth="302.0" style="-fx-background-color: F5FDFF; -fx-background-radius: 20;">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="Today's Timeline" textFill="#526c99">
+                  <Label layoutX="14.0" layoutY="14.0" text="Today's Timeline" textFill="#2262d9">
                      <font>
                         <Font name="Monospaced Bold" size="15.0" />
                      </font>
@@ -237,7 +257,7 @@
                               <Image url="@../img/icons8-appointment-time-100.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="54.0" layoutY="11.0" text="appointment" textFill="#526c99">
+                        <Label layoutX="54.0" layoutY="11.0" text="appointment" textFill="#2362d9">
                            <font>
                               <Font name="Monospaced Bold" size="15.0" />
                            </font>
@@ -250,7 +270,7 @@
                      </children></Pane>
                   <Pane layoutX="10.0" layoutY="132.0" opacity="0.51" prefHeight="43.0" prefWidth="273.0" style="-fx-border-color: #4C5354; -fx-border-radius: 10; -fx-border-width: 2;">
                      <children>
-                        <Label layoutX="52.0" layoutY="11.0" text="report" textFill="#526c99">
+                        <Label layoutX="52.0" layoutY="11.0" text="report" textFill="#2262d9">
                            <font>
                               <Font name="Monospaced Bold" size="15.0" />
                            </font>
@@ -269,7 +289,7 @@
                   </Pane>
                   <Pane layoutX="10.0" layoutY="204.0" opacity="0.51" prefHeight="43.0" prefWidth="273.0" style="-fx-border-color: #4C5354; -fx-border-radius: 10; -fx-border-width: 2;">
                      <children>
-                        <Label layoutX="51.0" layoutY="11.0" text="medicine" textFill="#526c99">
+                        <Label layoutX="51.0" layoutY="11.0" text="medicine" textFill="#2262d9">
                            <font>
                               <Font name="Monospaced Bold" size="15.0" />
                            </font>
@@ -293,13 +313,13 @@
                   </ImageView>
                </children>
             </Pane>
-            <Circle fill="WHITE" layoutX="154.0" layoutY="53.0" radius="33.0" stroke="#2d5c75" strokeType="INSIDE" strokeWidth="2.0" />
-            <Label layoutX="194.0" layoutY="25.0" prefHeight="24.0" prefWidth="200.0" text="name" textFill="#526c99">
+            <Circle fill="WHITE" layoutX="154.0" layoutY="53.0" radius="33.0" stroke="#2262d9" strokeType="INSIDE" strokeWidth="2.0" />
+            <Label fx:id="name1" layoutX="194.0" layoutY="25.0" prefHeight="24.0" prefWidth="200.0" text="name" textFill="#2262d9">
                <font>
                   <Font name="Monospaced Bold" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="adress" alignment="TOP_LEFT" layoutX="194.0" layoutY="53.0" prefHeight="36.0" prefWidth="217.0" text="adress" textFill="#526c99">
+            <Label fx:id="address" alignment="TOP_LEFT" layoutX="194.0" layoutY="53.0" prefHeight="36.0" prefWidth="217.0" text="adress" textFill="#526c99">
                <font>
                   <Font name="Monospaced Bold" size="11.0" />
                </font>
