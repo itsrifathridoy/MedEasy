@@ -22,7 +22,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("loginReg/login.fxml"));
         Scene scene = new Scene(root, Color.TRANSPARENT);
-        stage.initStyle(StageStyle.TRANSPARENT);
+//        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();

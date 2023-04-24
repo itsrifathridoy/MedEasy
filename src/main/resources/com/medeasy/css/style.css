@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Baloo Da 2 Bold';
+    src: url('../fonts/BalooDa2-Bold.ttf');
+}
 .input{
     -fx-background-color: #f1f1f1;
     -fx-font-size: 13px;
@@ -73,4 +77,28 @@
 {
     -fx-border-color: #465071;
     -fx-border-width: 0 0 1 0;
+}
+.font{
+    -fx-font-family: 'Baloo Da 2 Bold';
+    -fx-font-size: 56px;
+}
+.email{
+    -fx-background-color: #fff;
+    -fx-border-width: 0.5px;
+    -fx-background-radius: 0px;
+    -fx-border-color: #48bc9f;
+
+}
+.email:focused{
+    -fx-border-width: 1px;
+}
+#emailIValid{
+    -fx-animated: myanimation 10s infinite;
+}
+@keyframes myanimation {
+    0% {background-color: red;}
+    25%{background-color:yellow;}
+    50%{background-color:green;}
+    75%{background-color:brown;}
+    100% {background-color: red;}
 }
