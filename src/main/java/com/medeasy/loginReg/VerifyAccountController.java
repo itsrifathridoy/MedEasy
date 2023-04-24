@@ -48,7 +48,7 @@ public class VerifyAccountController implements Initializable {
         this.img3 = img3;
     }
 
-    public void createAccount(ActionEvent actionEvent) throws SQLException, IOException {
+    public void createAccount(ActionEvent actionEvent) throws SQLException, IOException, ClassNotFoundException {
 
         if (password.getText().equals(confirmPassword.getText())) {
             String sql = "INSERT INTO patients (bId, name, fatherNameBn, motherNameBn, dob, email, addressBn, addressEn, officeNameBn, officeNameEn, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

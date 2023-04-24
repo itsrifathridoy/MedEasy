@@ -8,20 +8,16 @@ import java.sql.*;
 public class DatabaseConnection {
     private Connection connection;
 
-    public DatabaseConnection() {
+    public DatabaseConnection() throws SQLException,ClassNotFoundException{
         this.connection = getConnection();
     }
 
-    public Connection getConnection() {
-        try {
+    public Connection getConnection() throws SQLException,ClassNotFoundException{
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
                     "jdbc:mysql://"+ Dotenv.load().get("DATABASE_HOSTNAME")+ ":"+Dotenv.load().get("DATABASE_PORT")+"/"+Dotenv.load().get("DATABASE_NAME"), Dotenv.load().get("DATABASE_USERNAME"), Dotenv.load().get("DATABASE_SECRET")
             );
 
-        } catch (Exception e) {
-            System.out.println(e);
-        }
         return connection;
     }
     public void insideData(String sql) throws SQLException {
