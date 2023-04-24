@@ -32,8 +32,8 @@ public class Encrept {
 //    }
 
         Encryption en = new Encryption();
-        String str = en.getEncryptedKey("Rifat");
-        System.out.println(en.getDecryptedKey("QcPFBSzSkFyCUDXjECYu+g=="));
+        String str = en.getEncryptedKey("Rifat3566");
+        System.out.println(str);
 }
 
 //    private static String decryptUsingASEKey(String data, byte[] key) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {

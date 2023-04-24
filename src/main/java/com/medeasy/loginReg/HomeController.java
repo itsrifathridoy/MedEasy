@@ -67,7 +67,12 @@ public class HomeController implements Initializable {
         System.out.println(email);
         Platform.runLater(()->{
             Main.enableMove(age.getScene(),(Stage) age.getScene().getWindow());
-            DatabaseConnection db = new DatabaseConnection();
+            DatabaseConnection db = null;
+            try {
+                db = new DatabaseConnection();
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             try {
                 Patient patient = db.getPatient(email,"email");
                 name1.setText(patient.getUsername());

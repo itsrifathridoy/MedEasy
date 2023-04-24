@@ -157,7 +157,7 @@
                </image>
             </ImageView>
             <Circle fx:id="bigCir1" fill="#abdbd900" layoutX="493.60000000000014" layoutY="47.0" radius="43.0" stroke="#daf2ec" strokeType="INSIDE" strokeWidth="13.0" AnchorPane.rightAnchor="8.199999999999818" AnchorPane.topAnchor="4.0" />
-            <Label layoutX="168.0" layoutY="63.0" styleClass="font" text="MED" textFill="#48bc9f" AnchorPane.bottomAnchor="565.8" AnchorPane.leftAnchor="168.0" AnchorPane.topAnchor="63.0">
+            <Label layoutX="168.0" layoutY="63.0" styleClass="font" text="MED" textFill="#48bc9f" AnchorPane.topAnchor="60.0">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -168,7 +168,7 @@
                      </light>
                   </Lighting>
                </effect></Label>
-            <Label layoutX="281.0" layoutY="63.0" styleClass="font" text="EASY" AnchorPane.bottomAnchor="565.8" AnchorPane.topAnchor="63.0">
+            <Label layoutX="284.0" layoutY="60.0" styleClass="font" text="EASY" AnchorPane.topAnchor="60.0">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -179,6 +179,11 @@
                      </light>
                   </Lighting>
                </effect></Label>
+            <Label fx:id="loginFailedWarning" layoutX="135.0" layoutY="153.0" text="Email and Password doesn't match" textFill="#ff0404" visible="false" AnchorPane.topAnchor="153.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

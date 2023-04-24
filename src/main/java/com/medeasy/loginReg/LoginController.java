@@ -1,7 +1,7 @@
 package com.medeasy.loginReg;
 
-import com.medeasy.DatabaseConnection;
-import com.medeasy.Encryption;
+import com.medeasy.*;
+import com.medeasy.users.Patient;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import io.github.palexdev.materialfx.controls.MFXSpinner;
 import javafx.animation.*;
@@ -21,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -33,6 +34,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -96,7 +99,10 @@ public class LoginController implements Initializable {
     @FXML
     private Circle smCir3;
 
+    @FXML
+    private Label loginFailedWarning;
 
+    private ResultSet resultSet;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -186,7 +192,9 @@ public class LoginController implements Initializable {
                 }
                 return svgPath;
             }
+
         };
+
         task.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
@@ -201,14 +209,13 @@ public class LoginController implements Initializable {
         task.setOnSucceeded((e)->{
             bigCir3.setVisible(true);
             smCir3.setVisible(true);
-            System.out.println(welcomeText.getTranslateX());
             spinner.setLayoutX(borderPane.getPrefWidth()/2);
-            System.out.println(spinner.getLayoutX());
             spinner.setVisible(true);
         });
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+
     }
     private void circleTransition(double r,Node node,double duration)
     {
@@ -261,48 +268,72 @@ public class LoginController implements Initializable {
         else if(!email.getText().equals("") && !password.getText().equals("")){
             emailIValid.setVisible(false);
             passValid.setVisible(false);
-            transition();
-            exclimerty.setVisible(false);
-            welcomeText.setText("Loading..");
-            String sql = "SELECT COUNT(1) FROM patients WHERE email = ? AND password = ?";
-            DatabaseConnection db = new DatabaseConnection();
-            Connection connection = db.getConnection();
-            try {
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1, email.getText());
-                String encryptedKey = new Encryption().getEncryptedKey(password.getText());
-                statement.setString(2, encryptedKey);
-                System.out.println(email.getText());
-                System.out.println(password.getText());
-                System.out.println(encryptedKey);
 
-                ResultSet resultSet = statement.executeQuery();
-                int count = 0;
-                if (resultSet.next()) {
-                    count = resultSet.getInt(1);
-                    System.out.println("The count is: " + count);
-                }
-                if (count==1)
-                {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-                    Parent root = loader.load();
-                    HomeController homeController = loader.getController();
-                    homeController.setEmail(email.getText());
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.centerOnScreen();
-                    stage.show();
-                }
-                else
-                {
-                    System.out.println("login Failed");
-                    Alert alert = new Alert(Alert.AlertType.ERROR,"Wrong Email and Password");
-                    alert.show();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+
+            String sql = "SELECT COUNT(1) FROM patients WHERE email = ? AND password = ?";
+
+            HashMap<Integer,Object> queries = new HashMap<>();
+            queries.put(1,email.getText());
+            queries.put(2,new Encryption().getEncryptedKey(password.getText()));
+            DatabaseCall databaseCall = new DatabaseCall(sql,queries);
+
+                databaseCall.setOnSucceeded(event -> {
+                    resultSet = databaseCall.getValue();
+                    try {
+                        int count = 0;
+                        if (resultSet.next()) {
+                            count = resultSet.getInt(1);
+                        }
+                        if (count==1)
+                        {
+                            loginFailedWarning.setVisible(false);
+
+                            transition();
+                            exclimerty.setVisible(false);
+                            welcomeText.setText("Loading..");
+
+                            Task<Void> task = new Task<>() {
+                                @Override
+                                protected Void call() throws Exception {
+                                    Thread.sleep(3000);
+                                    return null;
+                                }
+                            };
+
+                            task.setOnSucceeded(e->{
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+                                Parent root = null;
+                                try {
+                                    root = loader.load();
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                                HomeController homeController = loader.getController();
+                                homeController.setEmail(email.getText());
+                                Scene scene = new Scene(root);
+                                Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.centerOnScreen();
+                                stage.show();
+                            });
+                            new Thread(task).start();
+
+                        }
+                        else
+                        {
+                            System.out.println("login Failed");
+                            loginFailedWarning.setVisible(true);
+                        }
+                    } catch (Exception ex) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR,"Database Connection Failed");
+                        alert.show();
+                    }
+                });
+                Thread t = new Thread(databaseCall);
+                t.start();
+
+
         }
     }
     @FXML
