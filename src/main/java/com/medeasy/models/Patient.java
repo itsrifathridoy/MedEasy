@@ -1,23 +1,14 @@
-package com.medeasy.users;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.concurrent.Task;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Iterator;
+package com.medeasy.models;
 
 public class Patient {
     private String bId;
-    private String name;
+    private String personNameBn;
+    private String personNameEn;
     private String dob;
     private String fatherNameBn;
+    private String fatherNameEn;
     private String motherNameBn;
+    private String motherNameEn;
     private String addressBn;
     private String addressEn;
     private String officeNameBn;
@@ -30,18 +21,35 @@ public class Patient {
     {
 
     }
-    public Patient(String name, String dob, String fatherNameBn, String motherNameBn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
-        this.name = name;
+    public Patient(String personNameBn,String personNameEn, String dob, String fatherNameBn,String fatherNameEn, String motherNameBn, String motherNameEn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
+        this.personNameBn = personNameBn;
+        this.personNameEn = personNameEn;
         this.dob = dob;
         this.fatherNameBn = fatherNameBn;
+        this.fatherNameEn = fatherNameEn;
         this.motherNameBn = motherNameBn;
+        this.motherNameEn = motherNameEn;
+        this.addressBn = addressBn;
+        this.addressEn = addressEn;
+        this.officeNameBn = officeNameBn;
+        this.officeNameEn = officeNameEn;
+    }
+    public Patient(String bId,String personNameBn,String personNameEn, String dob, String fatherNameBn,String fatherNameEn, String motherNameBn, String motherNameEn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
+        this.bId = bId;
+        this.personNameBn = personNameBn;
+        this.personNameEn = personNameEn;
+        this.dob = dob;
+        this.fatherNameBn = fatherNameBn;
+        this.fatherNameEn = fatherNameEn;
+        this.motherNameBn = motherNameBn;
+        this.motherNameEn = motherNameEn;
         this.addressBn = addressBn;
         this.addressEn = addressEn;
         this.officeNameBn = officeNameBn;
         this.officeNameEn = officeNameEn;
     }
     public Patient(String bId,String name, String dob, String fatherNameBn, String motherNameBn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
-        this.name = name;
+        this.personNameBn = name;
         this.dob = dob;
         this.bId = bId;
         this.fatherNameBn = fatherNameBn;
@@ -55,7 +63,7 @@ public class Patient {
     public Patient(Patient patient,String username,String email)
 
     {
-        this.name = patient.name;
+        this.personNameBn = patient.personNameBn;
         this.bId = patient.bId;
         this.dob = patient.dob;
         this.fatherNameBn = patient.fatherNameBn;
@@ -93,12 +101,20 @@ public class Patient {
         this.email = email;
     }
 
-    public String getPatientName() {
-        return name;
+    public String getPersonNameBn() {
+        return personNameBn;
     }
 
-    public void setPatientName(String name) {
-        this.name = name;
+    public void setPersonNameBn(String personNameBn) {
+        this.personNameBn = personNameBn;
+    }
+
+    public String getPersonNameEn() {
+        return personNameEn;
+    }
+
+    public void setPersonNameEn(String personNameEn) {
+        this.personNameEn = personNameEn;
     }
 
     public String getDob() {
@@ -127,6 +143,22 @@ public class Patient {
 
     public String getAddressBn() {
         return addressBn;
+    }
+
+    public String getFatherNameEn() {
+        return fatherNameEn;
+    }
+
+    public void setFatherNameEn(String fatherNameEn) {
+        this.fatherNameEn = fatherNameEn;
+    }
+
+    public String getMotherNameEn() {
+        return motherNameEn;
+    }
+
+    public void setMotherNameEn(String motherNameEn) {
+        this.motherNameEn = motherNameEn;
     }
 
     public void setAddressBn(String addressBn) {
@@ -159,7 +191,21 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Person [name: "+ name+  " Date Of Birth: " + dob + " Father's Name: " + fatherNameBn + " Mother's Name: "+ motherNameBn;
+        return "Patient{" +
+                "bId='" + bId + '\'' +
+                ", personNameBn='" + personNameBn + '\'' +
+                ", personNameEn='" + personNameEn + '\'' +
+                ", dob='" + dob + '\'' +
+                ", fatherNameBn='" + fatherNameBn + '\'' +
+                ", fatherNameEn='" + fatherNameEn + '\'' +
+                ", motherNameBn='" + motherNameBn + '\'' +
+                ", motherNameEn='" + motherNameEn + '\'' +
+                ", addressBn='" + addressBn + '\'' +
+                ", addressEn='" + addressEn + '\'' +
+                ", officeNameBn='" + officeNameBn + '\'' +
+                ", officeNameEn='" + officeNameEn + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
-
 }

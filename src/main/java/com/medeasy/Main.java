@@ -1,10 +1,8 @@
 package com.medeasy;
 
-import com.medeasy.users.Patient;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -20,9 +18,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("loginReg/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/login.fxml"));
         Scene scene = new Scene(root, Color.TRANSPARENT);
-//        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();

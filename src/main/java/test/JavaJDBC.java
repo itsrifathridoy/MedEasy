@@ -1,7 +1,4 @@
 package test;
-import com.medeasy.DatabaseConnection;
-
-import java.sql.*;
 
 public class JavaJDBC {
     public static void main(String[] args) {

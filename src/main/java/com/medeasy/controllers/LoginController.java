@@ -1,9 +1,9 @@
-package com.medeasy.loginReg;
+package com.medeasy.controllers;
 
-import com.medeasy.*;
-import com.medeasy.users.Patient;
+import com.medeasy.util.DatabaseCall;
+import com.medeasy.util.Encryption;
+import com.medeasy.util.FXMLScene;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
-import io.github.palexdev.materialfx.controls.MFXSpinner;
 import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,9 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
@@ -31,10 +28,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -90,7 +84,7 @@ public class LoginController implements Initializable {
     @FXML
     private MFXProgressSpinner spinner;
     @FXML
-    private BorderPane borderPane;
+    private BorderPane rootPane;
     @FXML
     private Circle bigCir3;
     @FXML
@@ -107,8 +101,8 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
-            double h = borderPane.getScene().getHeight();
-            double w = borderPane.getScene().getWidth();
+            double h = rootPane.getScene().getHeight();
+            double w = rootPane.getScene().getWidth();
             double lx = 344;
             double cx = 344;
             double rx = 571.04;
@@ -133,16 +127,16 @@ public class LoginController implements Initializable {
         circleTransition(10,smCir3,10);
 
         Platform.runLater(()->{
-            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.maximizedProperty().addListener(new ChangeListener<Boolean>() {
 
                 @Override
                 public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
                     if(t.booleanValue())
                     {
-                        double h = borderPane.getScene().getHeight();
+                        double h = rootPane.getScene().getHeight();
                         System.out.println(h);
-                        double w = borderPane.getScene().getWidth();
+                        double w = rootPane.getScene().getWidth();
                         double lx = 344;
                         double cx = 344;
                         double rx = 571.04;
@@ -167,8 +161,8 @@ public class LoginController implements Initializable {
             protected String call() throws Exception {
 
                 String svgPath = "";
-                double h = borderPane.getScene().getHeight();
-                double w = borderPane.getScene().getWidth();
+                double h = rootPane.getScene().getHeight();
+                double w = rootPane.getScene().getWidth();
                 double lx = 344;
                 double cx = 344;
                 double rx = 571.04;
@@ -209,7 +203,7 @@ public class LoginController implements Initializable {
         task.setOnSucceeded((e)->{
             bigCir3.setVisible(true);
             smCir3.setVisible(true);
-            spinner.setLayoutX(borderPane.getPrefWidth()/2);
+            spinner.setLayoutX(rootPane.getPrefWidth()/2);
             spinner.setVisible(true);
         });
         Thread thread = new Thread(task);
@@ -237,11 +231,8 @@ public class LoginController implements Initializable {
     }
 
     public void signup(ActionEvent ae) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("regBirth.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) ae.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        FXMLScene.switchScene("/com/medeasy/views/regBirth.fxml", (Node) ae.getSource());
+
     }
 
     public void close(MouseEvent me) {
@@ -260,7 +251,7 @@ public class LoginController implements Initializable {
             emailIValid.setVisible(true);
             passValid.setVisible(true);
         }
-        else if(email.getText().equals("") && password.getText().equals(""))
+        else if(email.getText().equals("") || password.getText().equals(""))
         {
             emailIValid.setVisible(true);
             passValid.setVisible(true);
@@ -302,19 +293,11 @@ public class LoginController implements Initializable {
                             };
 
                             task.setOnSucceeded(e->{
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-                                Parent root = null;
-                                try {
-                                    root = loader.load();
-                                } catch (IOException ex) {
-                                    throw new RuntimeException(ex);
-                                }
-                                HomeController homeController = loader.getController();
-                                homeController.setEmail(email.getText());
-                                Scene scene = new Scene(root);
+                                FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
+                                ((HomeController)fxmlScene.getController()).setEmail(email.getText());
+                                Scene scene = new Scene(fxmlScene.getRoot());
                                 Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
                                 stage.setScene(scene);
-                                stage.centerOnScreen();
                                 stage.show();
                             });
                             new Thread(task).start();
