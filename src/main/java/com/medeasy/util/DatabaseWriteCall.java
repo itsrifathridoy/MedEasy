@@ -2,31 +2,46 @@ package com.medeasy.util;
 
 import javafx.concurrent.Task;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
-public class DatabaseCall extends Task<ResultSet> {
+public class DatabaseWriteCall extends Task<Integer> {
 
     private String sql;
     private PreparedStatement statement;
     private HashMap<Integer,Object> queries;
-    private ResultSet resultSet;
+    private int rowsInserted;
 
-    public DatabaseCall(String sql,HashMap<Integer,Object> queries) {
+    public DatabaseWriteCall(String sql, HashMap<Integer,Object> queries) {
         this.sql=sql;
         this.queries=queries;
     }
 
+    private void runQuery(DatabaseWriteCall databaseWriteCall)
+    {
+        databaseWriteCall.setOnSucceeded(workerStateEvent -> {
+            rowsInserted = databaseWriteCall.getValue();
+        });
+        new Thread(databaseWriteCall).start();
+    }
+
+    public int getRowsInserted(DatabaseWriteCall databaseWriteCall) {
+        runQuery(databaseWriteCall);
+        return rowsInserted;
+    }
 
     @Override
-    protected ResultSet call(){
+    protected Integer call(){
 
         try {
             DatabaseConnection db = new DatabaseConnection();
             Connection connection = db.getConnection();
             statement = connection.prepareStatement(sql);
             prepareStatement(queries);
-            resultSet = statement.executeQuery();
+            rowsInserted = statement.executeUpdate();
         }
         catch (Exception e)
         {
@@ -34,7 +49,7 @@ public class DatabaseCall extends Task<ResultSet> {
         }
 
 
-        return resultSet;
+        return rowsInserted;
     }
     void prepareStatement(HashMap<Integer,Object> queries) throws SQLException {
         for(int index:queries.keySet())

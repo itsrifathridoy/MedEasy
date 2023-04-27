@@ -10,6 +10,7 @@ module com.medeasy.medeasy {
     requires twilio;
     requires mysql.connector.j;
     requires java.sql;
+    requires java.prefs;
 
     opens com.medeasy.controllers to javafx.fxml;
     exports com.medeasy.controllers;

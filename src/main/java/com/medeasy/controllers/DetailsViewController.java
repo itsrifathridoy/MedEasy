@@ -80,9 +80,6 @@ public class DetailsViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
             Main.enableMove(name.getScene(),(Stage) name.getScene().getWindow());
-            mainStage.setOnCloseRequest((windowEvent -> {
-                ((Stage) name.getScene().getWindow()).close();
-            }));
         });
     }
 

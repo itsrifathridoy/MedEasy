@@ -127,6 +127,11 @@
                   <Font size="13.0" />
                </font>
             </Label>
+            <Label fx:id="emailExist" layoutX="274.0" layoutY="136.0" text="An account already assign with this email." textFill="#ff0404">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

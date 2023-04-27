@@ -2,8 +2,10 @@ package com.medeasy.controllers;
 
 import com.medeasy.Main;
 import com.medeasy.models.Patient;
+import com.medeasy.util.FXMLScene;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,13 +26,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class VerifyOtpController implements Initializable {
-    public HBox verifyBox;
-    public ImageView img1;
-    public ImageView img2;
-    public ImageView img3;
-    public String code;
-    public Pane contentArea;
-    public Patient patient;
+    @FXML
+    private HBox verifyBox;
+    private ImageView img1;
+    private ImageView img2;
+    private ImageView img3;
+    private String code;
+    private Pane contentArea;
+    private Patient patient;
+    private Stage mainStage;
+
+    public void setMainStage(Stage mainStage) {
+        this.mainStage = mainStage;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,25 +59,26 @@ public class VerifyOtpController implements Initializable {
 
 
     public void verifyCodePress(KeyEvent ke) {
-        System.out.println(ke.getSource());
+        for (int i = 0; i < verifyBox.getChildren().size(); i++) {
+            if (verifyBox.getChildren().get(i) instanceof TextField && verifyBox.getChildren().get(i).isFocused()) {
 
-        TextField textField = (TextField) ke.getSource();
-        if (!textField.getText().matches("\\d*")) {
-            textField.setText(textField.getText().replaceAll("[^\\d]", ""));
-        }
-        else if(textField.getText().length() > 1)
-        {
-            textField.setText(textField.getText().substring(0,1));
+                TextField textField = (TextField) ke.getSource();
+                if (!textField.getText().matches("\\d*")) {
+                    textField.setText(textField.getText().replaceAll("[^\\d]", ""));
+                } else if (textField.getText().length() > 1) {
+                    textField.setText(textField.getText().substring(0, 1));
+
+                } else if (textField.getText().length() == 1 && i!=verifyBox.getChildren().size()-1) {
+                    verifyBox.getChildren().get(i + 1).requestFocus();
+                    break;
+                }
+            }
+
 
         }
-        textField.end();
     }
 
     public void verifyBtn(ActionEvent ae) throws IOException {
-        InputStream okImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8_ok_480px.png");
-        InputStream thirdImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8-circled-3-240.png");
-        img2.setImage(new Image(okImg));
-        img3.setImage(new Image(thirdImg));
 
         String Vcode = "";
         for(Node tf: verifyBox.getChildren())
@@ -80,15 +89,17 @@ public class VerifyOtpController implements Initializable {
         System.out.println(code);
         if (Vcode.equals(code))
         {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("verify_Finishing.fxml"));
-            VerifyAccountController controller = new VerifyAccountController();
+            InputStream okImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8_ok_480px.png");
+            InputStream thirdImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8-circled-3-240.png");
+            img2.setImage(new Image(okImg));
+            img3.setImage(new Image(thirdImg));
+            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/verify_Finishing.fxml");
+            VerifyAccountController controller = (VerifyAccountController) fxmlScene.getController();
             controller.setData(patient,contentArea,img1,img2,img3);
-            loader.setController(controller);
-            Parent root = loader.load();
+            controller.setMainStage(mainStage);
 
             contentArea.getChildren().removeAll();
-            contentArea.getChildren().setAll(root);
+            contentArea.getChildren().setAll(fxmlScene.getRoot());
         }
 
     }

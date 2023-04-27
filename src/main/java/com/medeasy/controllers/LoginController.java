@@ -1,8 +1,9 @@
 package com.medeasy.controllers;
 
-import com.medeasy.util.DatabaseCall;
+import com.medeasy.util.DatabaseReadCall;
 import com.medeasy.util.Encryption;
 import com.medeasy.util.FXMLScene;
+import com.medeasy.util.LoginInfoSave;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.animation.*;
 import javafx.application.Platform;
@@ -11,10 +12,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -245,6 +244,7 @@ public class LoginController implements Initializable {
         stage.setIconified(true);
     }
     public void login(ActionEvent actionEvent) throws IOException, InterruptedException {
+
         if(!isValidEmail(email.getText()) || password.getText().length()<6)
         {
 
@@ -262,15 +262,15 @@ public class LoginController implements Initializable {
 
 
 
-            String sql = "SELECT COUNT(1) FROM patients WHERE email = ? AND password = ?";
+            String sql = "SELECT COUNT(1) FROM users WHERE email = ? AND password = ?";
 
             HashMap<Integer,Object> queries = new HashMap<>();
             queries.put(1,email.getText());
             queries.put(2,new Encryption().getEncryptedKey(password.getText()));
-            DatabaseCall databaseCall = new DatabaseCall(sql,queries);
+            DatabaseReadCall databaseReadCall = new DatabaseReadCall(sql,queries);
 
-                databaseCall.setOnSucceeded(event -> {
-                    resultSet = databaseCall.getValue();
+                databaseReadCall.setOnSucceeded(event -> {
+                    resultSet = databaseReadCall.getValue();
                     try {
                         int count = 0;
                         if (resultSet.next()) {
@@ -313,7 +313,7 @@ public class LoginController implements Initializable {
                         alert.show();
                     }
                 });
-                Thread t = new Thread(databaseCall);
+                Thread t = new Thread(databaseReadCall);
                 t.start();
 
 

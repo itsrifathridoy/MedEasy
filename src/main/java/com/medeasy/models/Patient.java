@@ -1,6 +1,6 @@
 package com.medeasy.models;
 
-public class Patient {
+public class Patient extends User{
     private String bId;
     private String personNameBn;
     private String personNameEn;
@@ -14,7 +14,6 @@ public class Patient {
     private String officeNameBn;
     private String officeNameEn;
     private String username;
-    private String email;
 
 
     public Patient()
@@ -48,6 +47,21 @@ public class Patient {
         this.officeNameBn = officeNameBn;
         this.officeNameEn = officeNameEn;
     }
+    public Patient(String userId,String email, String role,String bId,String personNameBn,String personNameEn, String dob, String fatherNameBn,String fatherNameEn, String motherNameBn, String motherNameEn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
+        super(userId,email,role);
+        this.bId = bId;
+        this.personNameBn = personNameBn;
+        this.personNameEn = personNameEn;
+        this.dob = dob;
+        this.fatherNameBn = fatherNameBn;
+        this.fatherNameEn = fatherNameEn;
+        this.motherNameBn = motherNameBn;
+        this.motherNameEn = motherNameEn;
+        this.addressBn = addressBn;
+        this.addressEn = addressEn;
+        this.officeNameBn = officeNameBn;
+        this.officeNameEn = officeNameEn;
+    }
     public Patient(String bId,String name, String dob, String fatherNameBn, String motherNameBn, String addressBn, String addressEn, String officeNameBn, String officeNameEn) {
         this.personNameBn = name;
         this.dob = dob;
@@ -63,11 +77,15 @@ public class Patient {
     public Patient(Patient patient,String username,String email)
 
     {
+
         this.personNameBn = patient.personNameBn;
+        this.personNameEn = patient.personNameEn;
         this.bId = patient.bId;
         this.dob = patient.dob;
         this.fatherNameBn = patient.fatherNameBn;
+        this.fatherNameEn = patient.fatherNameEn;
         this.motherNameBn = patient.motherNameBn;
+        this.motherNameEn = patient.motherNameEn;
         this.addressBn = patient.addressBn;
         this.addressEn = patient.addressEn;
         this.officeNameBn = patient.officeNameBn;
@@ -93,13 +111,6 @@ public class Patient {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getPersonNameBn() {
         return personNameBn;
@@ -205,7 +216,9 @@ public class Patient {
                 ", officeNameBn='" + officeNameBn + '\'' +
                 ", officeNameEn='" + officeNameEn + '\'' +
                 ", username='" + username + '\'' +
+                ", userID='" + userID + '\'' +
                 ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

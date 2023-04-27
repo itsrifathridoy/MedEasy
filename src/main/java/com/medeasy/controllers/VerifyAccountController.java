@@ -1,11 +1,11 @@
 package com.medeasy.controllers;
 
-import com.medeasy.util.DatabaseConnection;
-import com.medeasy.util.Encryption;
+import com.medeasy.util.*;
 import com.medeasy.Main;
 import com.medeasy.models.Patient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -21,17 +21,29 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class VerifyAccountController implements Initializable {
 
-    public TextField password;
-    public TextField confirmPassword;
+    @FXML
+    private TextField password;
+    @FXML
+    private TextField confirmPassword;
     private Patient patient;
-    public ImageView img1;
-    public ImageView img2;
-    public ImageView img3;
-    public Pane contentArea;
+    private ImageView img1;
+    private ImageView img2;
+    private ImageView img3;
+    private Pane contentArea;
+    private Stage mainStage;
+
+    public void setMainStage(Stage mainStage) {
+        this.mainStage = mainStage;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,53 +59,67 @@ public class VerifyAccountController implements Initializable {
         this.img2 = img2;
         this.img3 = img3;
     }
+    private String generateUserID(String role) {
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Dhaka"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
+        String timestamp = now.format(formatter);
+        UUID uuid = UUID.randomUUID();
+        String userID = role + "_" + timestamp + uuid.toString().substring(0, 6);
+        return userID;
+    }
 
     public void createAccount(ActionEvent actionEvent) throws SQLException, IOException, ClassNotFoundException {
 
         if (password.getText().equals(confirmPassword.getText())) {
-            String sql = "INSERT INTO patients (bId, name, fatherNameBn, motherNameBn, dob, email, addressBn, addressEn, officeNameBn, officeNameEn, username, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            String sql2 = "SELECT COUNT(1) FROM patients WHERE bId = '"+patient.getbId()+"'";
+            String userCreateSQL = "INSERT INTO users (userID, email, password, role) VALUES (?, ?, ?, ?)";
+            String patientCreateSQL = "INSERT INTO patients (userID, bId, personNameBn, personNameEn, fatherNameBn, fatherNameEn, motherNameBn, motherNameEn, dob, email, addressBn, addressEn, officeNameBn, officeNameEn, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
 
             DatabaseConnection db = new DatabaseConnection();
             Connection connection = db.getConnection();
-            Statement statement1 = connection.createStatement();
-            ResultSet resultSet = statement1.executeQuery(sql2);
-            int count = 0;
-            if (resultSet.next()) {
-                count = resultSet.getInt(1);
-                System.out.println("The count is: " + count);
-            }
-            if (count==0)
-            {
                 try {
-                    PreparedStatement statement = connection.prepareStatement(sql);
-                    statement.setString(1, patient.getbId());
-                    statement.setString(2, patient.getPersonNameBn());
-                    statement.setString(3, patient.getPersonNameEn());
-                    statement.setString(4, patient.getFatherNameBn());
-                    statement.setString(5, patient.getFatherNameEn());
-                    statement.setString(6, patient.getMotherNameBn());
-                    statement.setString(7, patient.getMotherNameEn());
-                    statement.setString(8, patient.getDob());
-                    statement.setString(9, patient.getEmail());
-                    statement.setString(10, patient.getAddressBn());
-                    statement.setString(11, patient.getAddressEn());
-                    statement.setString(12, patient.getOfficeNameBn());
-                    statement.setString(13, patient.getOfficeNameEn());
-                    statement.setString(14, patient.getUsername());
+                    String userId = generateUserID("PATIENT");
                     String encryptedSecret = new Encryption().getEncryptedKey(password.getText());
-                    statement.setString(15, encryptedSecret);
-                    int rowsInserted = statement.executeUpdate();
-                    if (rowsInserted > 0) {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
-                        Parent root = loader.load();
-                        HomeController homeController = loader.getController();
+                    HashMap<Integer,Object> userCreateQuery = new HashMap<>();
+                    userCreateQuery.put(1,userId);
+                    userCreateQuery.put(2,patient.getEmail());
+                    userCreateQuery.put(3,encryptedSecret);
+                    userCreateQuery.put(4,"PATIENT");
+                    DatabaseWriter databaseWriter = new DatabaseWriter(userCreateSQL,userCreateQuery);
+                    databaseWriter.join();
+                    int userRowInserted = databaseWriter.getRowInserted();
+
+                    //Add data on patients table
+
+                    HashMap<Integer,Object> patientCreateQuery = new HashMap<>();
+                    patientCreateQuery.put(1, userId);
+                    patientCreateQuery.put(2, patient.getbId());
+                    patientCreateQuery.put(3, patient.getPersonNameBn());
+                    patientCreateQuery.put(4, patient.getPersonNameEn());
+                    patientCreateQuery.put(5, patient.getFatherNameBn());
+                    patientCreateQuery.put(6, patient.getFatherNameEn());
+                    patientCreateQuery.put(7, patient.getMotherNameBn());
+                    patientCreateQuery.put(8, patient.getMotherNameEn());
+                    patientCreateQuery.put(9, patient.getDob());
+                    patientCreateQuery.put(10, patient.getEmail());
+                    patientCreateQuery.put(11, patient.getAddressBn());
+                    patientCreateQuery.put(12, patient.getAddressEn());
+                    patientCreateQuery.put(13, patient.getOfficeNameBn());
+                    patientCreateQuery.put(14, patient.getOfficeNameEn());
+                    patientCreateQuery.put(15, patient.getUsername());
+
+                    DatabaseWriter patientDatabaseWriter = new DatabaseWriter(patientCreateSQL,patientCreateQuery);
+                    patientDatabaseWriter.join();
+                    int patientRowsInserted = databaseWriter.getRowInserted();
+
+                    if (patientRowsInserted > 0 && userRowInserted>0) {
+                        FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
+                        HomeController homeController = (HomeController) fxmlScene.getController();
                         homeController.setEmail(patient.getEmail());
-                        Scene scene = new Scene(root);
+                        Scene scene = new Scene(fxmlScene.getRoot());
+                        mainStage.setScene(scene);
                         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.centerOnScreen();
-                        stage.show();
+                        stage.close();
+                        mainStage.show();
                         System.out.println("A new patient has been inserted.");
                     }
                     else
@@ -101,18 +127,9 @@ public class VerifyAccountController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.ERROR,"Email already available on db");
                         alert.show();
                     }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-            }
-            else
-            {
-                System.out.println("Create account Failed");
-                Alert alert = new Alert(Alert.AlertType.ERROR,"Account already created");
-                alert.show();
-            }
 
         } else {
             System.out.println("Please Enter Your Password");

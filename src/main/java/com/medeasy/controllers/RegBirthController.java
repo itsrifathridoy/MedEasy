@@ -1,9 +1,11 @@
 package com.medeasy.controllers;
 
 import com.medeasy.Main;
+import com.medeasy.util.DatabaseReadCall;
 import com.medeasy.util.FXMLScene;
 import com.medeasy.util.PatientApiCallTask;
 import com.medeasy.models.Patient;
+import com.medeasy.util.SendEmail;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -24,11 +27,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class RegBirthController implements Initializable {
@@ -81,7 +89,7 @@ public class RegBirthController implements Initializable {
 
 
     public void nextDetailsView(ActionEvent actionEvent) throws IOException {
-
+        warning.setVisible(false);
         if(dob.getText().equals("") || bId.getText().equals("") || dob.getValue()==null)
         {
             dobValid.setText("DOB Must be Less than "+LocalDate.now().format(DateTimeFormatter.ofPattern("MMM dd, yyyy")));
@@ -97,69 +105,98 @@ public class RegBirthController implements Initializable {
         }
         else if(!dob.getText().equals("") && !bId.getText().equals(""))
         {
-            String dateFormat = dob.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             dobValid.setVisible(false);
             bidValid.setVisible(false);
             warning.setText("");
-            ((Button)actionEvent.getSource()).setText("");
+            ((Button) actionEvent.getSource()).setText("");
             loader.setVisible(true);
-            System.out.println(dob.getValue());
-            PatientApiCallTask patientApiCallTask = new PatientApiCallTask(bId.getText(),dateFormat);
-            patientApiCallTask.setOnSucceeded(event -> {
+            String checkPatientAvailableSQL = "SELECT COUNT(1) FROM patients WHERE bId = ?";
 
+            HashMap<Integer,Object> queries = new HashMap<>();
+            queries.put(1,bId.getText());
+            DatabaseReadCall databaseReadCall = new DatabaseReadCall(checkPatientAvailableSQL,queries);
+            databaseReadCall.setOnSucceeded(wse -> {
+                ResultSet resultSet = databaseReadCall.getValue();
 
-                patient = patientApiCallTask.getValue();
-                if(patient instanceof Patient)
-                {
-                    loader.setVisible(false);
-                    successImg.setVisible(true);
+                int count = 0;
+                try {
+                    if (resultSet.next()) {
+                        count = resultSet.getInt(1);
+                        System.out.println("The count is: " + count);
+                    }
+                    if (count == 0) {
+                        String dateFormat = dob.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        System.out.println(dob.getValue());
+                        PatientApiCallTask patientApiCallTask = new PatientApiCallTask(bId.getText(), dateFormat);
+                        patientApiCallTask.setOnSucceeded(event -> {
+                            patient = patientApiCallTask.getValue();
+                            if (patient instanceof Patient) {
+                                loader.setVisible(false);
+                                successImg.setVisible(true);
 
-                    System.out.println(patient);
-                    FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/detailsView.fxml");
-                    ((DetailsViewController)fxmlScene.getController()).setPatient((Patient) patient);
-                    Stage mainStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                    ((DetailsViewController)fxmlScene.getController()).setMainStage(mainStage);
-                    Scene scene = new Scene(fxmlScene.getRoot());
-                    popUPStage.setScene(scene);
-                    popUPStage.setResizable(false);
-                    popUPStage.setAlwaysOnTop(true);
-                    popUPStage.centerOnScreen();
-                    popUPStage.show();
-                    successImg.setVisible(false);
-                    ((Button)actionEvent.getSource()).setText("Search");
+                                System.out.println(patient);
+                                FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/detailsView.fxml");
+                                ((DetailsViewController) fxmlScene.getController()).setPatient((Patient) patient);
+                                Stage mainStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                ((DetailsViewController) fxmlScene.getController()).setMainStage(mainStage);
+                                Scene scene = new Scene(fxmlScene.getRoot());
+                                popUPStage.setScene(scene);
+                                popUPStage.setResizable(false);
+                                popUPStage.setAlwaysOnTop(true);
+                                popUPStage.centerOnScreen();
+                                popUPStage.show();
+                                successImg.setVisible(false);
+                                ((Button) actionEvent.getSource()).setText("Search");
+
+                            } else if (patient == null) {
+                                loader.setVisible(false);
+                                warning.setVisible(true);
+                                warning.setText("No Match Found");
+                                ((Button) actionEvent.getSource()).setBackground(Background.fill(Color.rgb(243, 117, 121)));
+                                ((Button) actionEvent.getSource()).setText("Try Again");
+
+                            } else if (patient instanceof String[]) {
+                                String[] strings = (String[]) patient;
+                                loader.setVisible(false);
+                                ((Button) actionEvent.getSource()).setBackground(Background.fill(Color.rgb(243, 117, 121)));
+                                ((Button) actionEvent.getSource()).setText("Try Again");
+                                Alert alert = new Alert(Alert.AlertType.ERROR, strings[1], ButtonType.OK);
+                                alert.setHeaderText(strings[0]);
+                                alert.setTitle("Unable to Search");
+                                alert.show();
+                            }
+
+                        });
+                        patientApiCallTask.setOnFailed(event -> {
+                            Alert alert = new Alert(Alert.AlertType.ERROR, "Error");
+                            alert.show();
+                        });
+                        new Thread(patientApiCallTask).start();
+                    }
+                    else {
+                        warning.setText("Already account created");
+                        warning.setVisible(true);
+                        loader.setVisible(false);
+                        ((Button) actionEvent.getSource()).setText("Search");
+                    }
 
                 }
-                else if(patient==null)
+                catch (Exception e)
                 {
-                    loader.setVisible(false);
-                    warning.setText("No Match Found");
-                    ((Button)actionEvent.getSource()).setBackground(Background.fill(Color.rgb(243, 117, 121)));
-                    ((Button)actionEvent.getSource()).setText("Try Again");
-
-                }
-                else if(patient instanceof String[])
-                {
-                    String[] strings = (String[]) patient;
-                    loader.setVisible(false);
-                    ((Button)actionEvent.getSource()).setBackground(Background.fill(Color.rgb(243, 117, 121)));
-                    ((Button)actionEvent.getSource()).setText("Try Again");
-                    Alert alert = new Alert(Alert.AlertType.ERROR, strings[1], ButtonType.OK);
-                    alert.setHeaderText(strings[0]);
-                    alert.setTitle("Unable to Search");
-                    alert.show();
+                    e.printStackTrace();
                 }
 
             });
-            patientApiCallTask.setOnFailed(event -> {
-                Alert alert = new Alert(Alert.AlertType.ERROR,"Error");
+
+            databaseReadCall.setOnFailed(workerStateEvent -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Database Query Failed", ButtonType.OK);
+                alert.setTitle("Error Occurs");
+                alert.setHeaderText("Something went wrong");
                 alert.show();
             });
+            new Thread(databaseReadCall).start();
 
-            new Thread(patientApiCallTask).start();
         }
-
-
-
 
     }
 
