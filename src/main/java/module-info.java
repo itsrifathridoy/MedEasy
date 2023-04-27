@@ -11,10 +11,12 @@ module com.medeasy.medeasy {
     requires mysql.connector.j;
     requires java.sql;
 
-    opens com.medeasy.loginReg to javafx.fxml;
-    exports com.medeasy.loginReg;
+    opens com.medeasy.controllers to javafx.fxml;
+    exports com.medeasy.controllers;
     exports com.medeasy;
     opens com.medeasy to javafx.fxml;
-    exports com.medeasy.users;
-    opens com.medeasy.users to javafx.fxml;
+    exports com.medeasy.models;
+    opens com.medeasy.models to javafx.fxml;
+    exports com.medeasy.util;
+    opens com.medeasy.util to javafx.fxml;
 }

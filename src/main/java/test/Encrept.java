@@ -1,18 +1,6 @@
 package test;
 
-import com.medeasy.Encryption;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.FileInputStream;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.KeyStore;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
+import com.medeasy.util.Encryption;
 
 public class Encrept {
     public static void main(String[] args) throws Exception {

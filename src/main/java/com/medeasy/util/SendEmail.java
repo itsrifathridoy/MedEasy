@@ -1,6 +1,7 @@
-package com.medeasy;
+package com.medeasy.util;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import javafx.concurrent.Task;
 
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -11,10 +12,21 @@ import javax.mail.Message;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Transport;
-public class SendEmail {
+public class SendEmail  extends Task{
+
+    private String recepient;
+    private String subject;
+    private String content;
+
+    public SendEmail(String recepient, String subject, String content) {
+        this.recepient = recepient;
+        this.subject = subject;
+        this.content = content;
+    }
 
 
-    public static void sendMail (String recepient,String subject, String content) throws Exception {
+
+    public void sendMail (String recepient, String subject, String content) throws Exception {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -50,7 +62,10 @@ public class SendEmail {
         return null;
     }
 
-    private String userName;
-    private String code;
 
+    @Override
+    protected Object call() throws Exception {
+        sendMail(recepient,subject,content);
+        return null;
+    }
 }

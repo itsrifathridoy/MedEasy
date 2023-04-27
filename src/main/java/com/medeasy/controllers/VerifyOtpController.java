@@ -1,10 +1,9 @@
-package com.medeasy.loginReg;
+package com.medeasy.controllers;
 
 import com.medeasy.Main;
-import com.medeasy.users.Patient;
+import com.medeasy.models.Patient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -52,6 +51,7 @@ public class VerifyOtpController implements Initializable {
 
 
     public void verifyCodePress(KeyEvent ke) {
+        System.out.println(ke.getSource());
 
         TextField textField = (TextField) ke.getSource();
         if (!textField.getText().matches("\\d*")) {
