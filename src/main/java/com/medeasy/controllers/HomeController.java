@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.medeasy.util.DatabaseConnection;
 import com.medeasy.Main;
 import com.medeasy.models.Patient;
+import com.medeasy.util.FXMLScene;
+import com.medeasy.util.LoginInfoSave;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -105,5 +107,9 @@ public class HomeController implements Initializable {
         stage.setIconified(true);
     }
 
-
+    @FXML
+    private void logout(MouseEvent mouseEvent) {
+        LoginInfoSave.clearLoginInfo();
+        FXMLScene.switchScene("/com/medeasy/views/login.fxml", (Node) mouseEvent.getSource());
+    }
 }

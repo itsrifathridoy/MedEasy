@@ -71,6 +71,16 @@
                      </children>
                   </Pane>
                   <Pane fx:id="HooverCornner1" layoutY="111.0" opacity="0.5" prefHeight="89.0" prefWidth="95.0" style="-fx-background-color: FFFFFF;" />
+                  <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="26.0" layoutY="638.0" onMouseClicked="#logout">
+                     <image>
+                        <Image url="@../img/logout_480px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="22.0" layoutY="677.0" onMouseClicked="#logout" text="Logout" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Pane layoutX="434.0" layoutY="-1.0" prefHeight="717.0" prefWidth="750.0" style="-fx-background-color: F5FDFF;">

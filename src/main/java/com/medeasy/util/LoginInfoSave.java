@@ -7,8 +7,8 @@ public class LoginInfoSave {
     private static final String EMAIL_KEY = "email";
     private static final String PASSWORD_KEY = "password";
 
-    public static void saveLoginInfo(String username, String password) {
-        prefs.put(EMAIL_KEY, username);
+    public static void saveLoginInfo(String email, String password) {
+        prefs.put(EMAIL_KEY, email);
         prefs.put(PASSWORD_KEY, password);
     }
 

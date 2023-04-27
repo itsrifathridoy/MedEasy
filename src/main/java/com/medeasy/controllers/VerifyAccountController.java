@@ -38,6 +38,7 @@ public class VerifyAccountController implements Initializable {
     private ImageView img1;
     private ImageView img2;
     private ImageView img3;
+    @FXML
     private Pane contentArea;
     private Stage mainStage;
 
@@ -112,6 +113,7 @@ public class VerifyAccountController implements Initializable {
                     int patientRowsInserted = databaseWriter.getRowInserted();
 
                     if (patientRowsInserted > 0 && userRowInserted>0) {
+                        LoginInfoSave.saveLoginInfo(patient.getEmail(), encryptedSecret);
                         FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
                         HomeController homeController = (HomeController) fxmlScene.getController();
                         homeController.setEmail(patient.getEmail());

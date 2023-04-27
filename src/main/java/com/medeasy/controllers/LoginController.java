@@ -261,12 +261,13 @@ public class LoginController implements Initializable {
             passValid.setVisible(false);
 
 
+            String encryptPassword = new Encryption().getEncryptedKey(password.getText());
 
             String sql = "SELECT COUNT(1) FROM users WHERE email = ? AND password = ?";
 
             HashMap<Integer,Object> queries = new HashMap<>();
             queries.put(1,email.getText());
-            queries.put(2,new Encryption().getEncryptedKey(password.getText()));
+            queries.put(2,encryptPassword);
             DatabaseReadCall databaseReadCall = new DatabaseReadCall(sql,queries);
 
                 databaseReadCall.setOnSucceeded(event -> {
@@ -293,6 +294,7 @@ public class LoginController implements Initializable {
                             };
 
                             task.setOnSucceeded(e->{
+                                LoginInfoSave.saveLoginInfo(email.getText(),encryptPassword);
                                 FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
                                 ((HomeController)fxmlScene.getController()).setEmail(email.getText());
                                 Scene scene = new Scene(fxmlScene.getRoot());
