@@ -1,9 +1,9 @@
-package com.medeasy.loginReg;
+package com.medeasy.controllers;
 
-import com.medeasy.DatabaseConnection;
-import com.medeasy.Encryption;
+import com.medeasy.util.DatabaseConnection;
+import com.medeasy.util.Encryption;
 import com.medeasy.Main;
-import com.medeasy.users.Patient;
+import com.medeasy.models.Patient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -67,20 +67,22 @@ public class VerifyAccountController implements Initializable {
             {
                 try {
                     PreparedStatement statement = connection.prepareStatement(sql);
-
                     statement.setString(1, patient.getbId());
-                    statement.setString(2, patient.getPatientName());
-                    statement.setString(3, patient.getFatherNameBn());
-                    statement.setString(4, patient.getMotherNameBn());
-                    statement.setString(5, patient.getDob());
-                    statement.setString(6, patient.getEmail());
-                    statement.setString(7, patient.getAddressBn());
-                    statement.setString(8, patient.getAddressEn());
-                    statement.setString(9, patient.getOfficeNameBn());
-                    statement.setString(10, patient.getOfficeNameEn());
-                    statement.setString(11, patient.getUsername());
+                    statement.setString(2, patient.getPersonNameBn());
+                    statement.setString(3, patient.getPersonNameEn());
+                    statement.setString(4, patient.getFatherNameBn());
+                    statement.setString(5, patient.getFatherNameEn());
+                    statement.setString(6, patient.getMotherNameBn());
+                    statement.setString(7, patient.getMotherNameEn());
+                    statement.setString(8, patient.getDob());
+                    statement.setString(9, patient.getEmail());
+                    statement.setString(10, patient.getAddressBn());
+                    statement.setString(11, patient.getAddressEn());
+                    statement.setString(12, patient.getOfficeNameBn());
+                    statement.setString(13, patient.getOfficeNameEn());
+                    statement.setString(14, patient.getUsername());
                     String encryptedSecret = new Encryption().getEncryptedKey(password.getText());
-                    statement.setString(12, encryptedSecret);
+                    statement.setString(15, encryptedSecret);
                     int rowsInserted = statement.executeUpdate();
                     if (rowsInserted > 0) {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboard.fxml"));

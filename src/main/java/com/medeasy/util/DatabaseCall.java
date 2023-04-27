@@ -1,4 +1,4 @@
-package com.medeasy;
+package com.medeasy.util;
 
 import javafx.concurrent.Task;
 

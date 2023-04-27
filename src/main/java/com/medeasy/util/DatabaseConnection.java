@@ -1,6 +1,6 @@
-package com.medeasy;
+package com.medeasy.util;
 
-import com.medeasy.users.Patient;
+import com.medeasy.models.Patient;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.*;
@@ -39,16 +39,19 @@ public class DatabaseConnection {
         while (resultSet.next())
         {
             patient.setbId(resultSet.getString(1));
-            patient.setPatientName(resultSet.getString(2));
-            patient.setFatherNameBn(resultSet.getString(3));
-            patient.setMotherNameBn(resultSet.getString(4));
-            patient.setDob(resultSet.getString(5));
-            patient.setEmail(resultSet.getString(6));
-            patient.setAddressBn(resultSet.getString(7));
-            patient.setAddressEn(resultSet.getString(8));
-            patient.setOfficeNameBn(resultSet.getString(9));
-            patient.setOfficeNameEn(resultSet.getString(10));
-            patient.setUsername(resultSet.getString(11));
+            patient.setPersonNameBn(resultSet.getString(2));
+            patient.setPersonNameEn(resultSet.getString(3));
+            patient.setFatherNameBn(resultSet.getString(4));
+            patient.setFatherNameEn(resultSet.getString(5));
+            patient.setMotherNameBn(resultSet.getString(6));
+            patient.setMotherNameEn(resultSet.getString(7));
+            patient.setDob(resultSet.getString(8));
+            patient.setEmail(resultSet.getString(9));
+            patient.setAddressBn(resultSet.getString(10));
+            patient.setAddressEn(resultSet.getString(11));
+            patient.setOfficeNameBn(resultSet.getString(12));
+            patient.setOfficeNameEn(resultSet.getString(13));
+            patient.setUsername(resultSet.getString(14));
         }
         return patient;
     }

@@ -1,9 +1,9 @@
-package com.medeasy.loginReg;
+package com.medeasy.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.medeasy.DatabaseConnection;
+import com.medeasy.util.DatabaseConnection;
 import com.medeasy.Main;
-import com.medeasy.users.Patient;
+import com.medeasy.models.Patient;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
