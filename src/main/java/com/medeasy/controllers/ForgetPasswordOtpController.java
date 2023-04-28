@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,16 +26,18 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class VerifyOtpController implements Initializable {
+public class ForgetPasswordOtpController implements Initializable {
     @FXML
     private HBox verifyBox;
+    @FXML
+    private Label warning;
     private ImageView img1;
     private ImageView img2;
     private ImageView img3;
     private String code;
     private Pane contentArea;
-    private Patient patient;
     private Stage mainStage;
+    private String email;
 
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
@@ -42,24 +45,17 @@ public class VerifyOtpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(()->{
-            Main.enableMove(contentArea.getScene(),(Stage) contentArea.getScene().getWindow());
-        });
+        warning.setVisible(false);
     }
 
-    public void setData(Patient patient, String code, Pane contentArea, ImageView img1, ImageView img2, ImageView img3)
+    public void setData(String email, String code, Pane contentArea, ImageView img1, ImageView img2, ImageView img3)
     {
-        this.patient=patient;
+        this.email = email;
         this.code = code;
         this.contentArea = contentArea;
         this.img1 =img1;
         this.img2 = img2;
         this.img3 = img3;
-    }
-    public void setData(String email,String code)
-    {
-        this.code = code;
-        this.patient.setEmail(email);
     }
 
 
@@ -85,7 +81,7 @@ public class VerifyOtpController implements Initializable {
     }
 
     public void verifyBtn(ActionEvent ae) throws IOException {
-
+        warning.setVisible(false);
         String Vcode = "";
         for(Node tf: verifyBox.getChildren())
         {
@@ -99,13 +95,18 @@ public class VerifyOtpController implements Initializable {
             InputStream thirdImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8-circled-3-240.png");
             img2.setImage(new Image(okImg));
             img3.setImage(new Image(thirdImg));
-            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/verify_Finishing.fxml");
-            VerifyAccountController controller = (VerifyAccountController) fxmlScene.getController();
-            controller.setData(patient,contentArea,img1,img2,img3);
+            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/forgetPassword_changePass.fxml");
+            ForgetPasswordChangePassController controller = (ForgetPasswordChangePassController) fxmlScene.getController();
+            controller.setMainStage(mainStage);
+            controller.setData(email);
             controller.setMainStage(mainStage);
 
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxmlScene.getRoot());
+        }
+        else
+        {
+            warning.setVisible(true);
         }
 
     }

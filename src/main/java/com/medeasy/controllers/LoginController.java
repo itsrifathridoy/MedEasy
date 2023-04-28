@@ -348,4 +348,16 @@ public class LoginController implements Initializable {
         }
     }
 
+    @FXML
+    void forgetPassword(ActionEvent event) {
+        FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/forgetPassword_input.fxml");
+        ForgetPassInputController forgetPassInputController = (ForgetPassInputController) fxmlScene.getController();
+        Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        forgetPassInputController.setMainStage(mainStage);
+        Scene scene = new Scene(fxmlScene.getRoot());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

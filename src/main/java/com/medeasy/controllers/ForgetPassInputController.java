@@ -1,6 +1,8 @@
 package com.medeasy.controllers;
 
+import com.medeasy.models.EmailTemplate;
 import com.medeasy.models.Patient;
+import com.medeasy.util.DatabaseConnection;
 import com.medeasy.util.DatabaseReadCall;
 import com.medeasy.util.FXMLScene;
 import com.medeasy.util.SendEmail;
@@ -20,7 +22,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -87,61 +92,74 @@ public class ForgetPassInputController implements Initializable {
             emailIValid.setVisible(true);
         }
         else if(!email.getText().equals("") && isValidEmail(email.getText())) {
+            ((Button)event.getSource()).setText("");
+            loader.setVisible(true);
+            emailIValid.setVisible(false);
             String checkUserAvailabilitySQL = "SELECT COUNT(1) FROM users WHERE email = ?";
             HashMap<Integer,Object> queries = new HashMap<>();
             queries.put(1,email.getText());
             DatabaseReadCall databaseReadCall = new DatabaseReadCall(checkUserAvailabilitySQL,queries);
             databaseReadCall.setOnSucceeded(wse -> {
                 ResultSet resultSet = databaseReadCall.getValue();
+                System.out.println(queries);
                 int count = 0;
                 try {
                     if (resultSet.next()) {
                         count = resultSet.getInt(1);
                         System.out.println("The count is: " + count);
                     }
-//                    if(count==0)
-//                    {
-//                        ((Button)event.getSource()).setText("");
-//                        loader.setVisible(true);
-//                        emailIValid.setVisible(false);
-//
-//                        code = String.valueOf((int) (Math.random() * 900000) + 100000);
-//                        System.out.println(code);
-//                        String htmlCode = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title></title><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Rubik\"><style type=\"text/css\">@media screen{@font-face{font-family:Rubik;font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/rubik/v11/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-B4iFV0Uz.woff) format('woff')}}@media only screen and (max-width:620px){.wrapper .section{width:100%}.wrapper .column{width:100%;display:block}}</style></head><body style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><p style=\"margin:0;padding:0;padding-bottom:20px;line-height:1.6;font-family:Rubik;color:#2d4f43;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"></p><table width=\"100%\" style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><tbody style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><tr style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><td class=\"wrapper\" width=\"600\" align=\"center\" style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;padding-left:10px;padding-right:10px;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><table class=\"section header\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:initial;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><tbody><tr style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><td class=\"column\" style=\"padding:0;margin:0;border:1px solid #c3cdc9;border-radius:8px;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><table style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><tbody style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><tr style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><td align=\"center\" style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;padding-top:64px\"><h2 style=\"margin:0;padding:0;padding-bottom:20px;line-height:1.6;font-family:Rubik;color:#2d4f43;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;text-align:center;padding-top:32px;padding-bottom:3px\">Verification Code</h2><table style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;margin-bottom:48px\"><tbody style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><tr style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><td style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;vertical-align:middle\"><h2 style=\"margin:0;padding:0;padding-bottom:20px;line-height:1.6;font-family:Rubik;color:#2d4f43;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;padding:0\">&nbsp;&nbsp;MedEasy</h2></td></tr></tbody></table></td></tr><tr style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><td align=\"left\" style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;border-top:1px solid #c3cdc9;padding:46px 54px 64px\"><p style=\"margin:0;padding:0;padding-bottom:20px;line-height:1.6;font-family:Rubik;color:#2d4f43;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;font-weight:600;text-align:left\">Hello, " + userName + "!</p><p style=\"margin:0;padding:0;padding-bottom:20px;line-height:1.6;font-family:Rubik;color:#2d4f43;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;text-align:left\">Enter the following OTP to create a new account</p><p style=\"margin:0;padding:0;padding-bottom:20px;line-height:1.6;font-family:Rubik;color:#2d4f43;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;font-weight:600;font-size:24px;text-align:center\">" + code + "</p><p style=\"margin:0;padding:0;padding-bottom:20px;line-height:1.6;font-family:Rubik;color:#2d4f43;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;text-align:left\">Do not forward or give this code to anyone.<br></p></td></tr></tbody></table></td></tr><tr style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><td class=\"column\" style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><table style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;width:100%;border-bottom:1px solid #c3cdc9\"><tbody style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><tr style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><td align=\"center\" style=\"padding:0;margin:0;border:none;border-spacing:0;border-collapse:collapse;vertical-align:top;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important\"><p style=\"margin:0;padding:0;padding-bottom:20px;line-height:1.6;font-family:Rubik;color:#2d4f43;font-family:Rubik,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif!important;font-size:14px;padding-bottom:32px\">For any concerns, please reach out MedEasy support Team</p></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></body></html>";
-//                        System.out.println(email.getText());
-//                        SendEmail sendOtp = new SendEmail(email.getText(), "MedEasy Veification Code", htmlCode);
-//                        sendOtp.setOnSucceeded(workerStateEvent -> {
-//                            InputStream okImg = null;
-//                            InputStream secondImg = null;
-//                            try {
-//                                okImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8_ok_480px.png");
-//                                secondImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8-circled-2-240.png");
-//
-//                            } catch (FileNotFoundException e) {
-//                                e.printStackTrace();
-//                            }
-//                            img1.setImage(new Image(okImg));
-//                            img2.setImage(new Image(secondImg));
-//                            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/verify_otp.fxml");
-//                            VerifyOtpController controller = (VerifyOtpController) fxmlScene.getController();
-//                            controller.setData(new Patient(patient, userName, email.getText()), code, contentArea, img1, img2, img3);
-//                            controller.setMainStage(mainStage);
-//
-//                            contentArea.getChildren().removeAll();
-//                            contentArea.getChildren().setAll(fxmlScene.getRoot());
-//                        });
-//                        sendOtp.setOnFailed(workerStateEvent -> {
-//                            loader.setVisible(false);
-//                            ((Button)ae.getSource()).setText("Next");
-//                        });
-//                        Thread thread = new Thread(sendOtp);
-//                        thread.setDaemon(true);
-//                        thread.start();
-//                    }
-//                    else
-//                    {
-//                        emailExist.setVisible(true);
-//                    }
+                    if(count==1)
+                    {
+                        String getUserNameSQL = "SELECT username from patients WHERE email = ?";
+                        DatabaseConnection databaseConnection = new DatabaseConnection();
+                        Connection connection = databaseConnection.getConnection();
+                        PreparedStatement statement = connection.prepareStatement(getUserNameSQL);
+                        statement.setString(1,email.getText());
+                        ResultSet resultSet1 = statement.executeQuery();
+                        String name = null;
+                        while (resultSet1.next())
+                        {
+                            name = resultSet1.getString(1);
+                        }
+                        code = String.valueOf((int) (Math.random() * 900000) + 100000);
+                        System.out.println(code);
+                        System.out.println(email.getText());
+                        EmailTemplate emailTemplate = new EmailTemplate(name,code);
+                        SendEmail sendOtp = new SendEmail(email.getText(), "MedEasy Veification Code", emailTemplate.getForgetPassTemplate());
+                        sendOtp.setOnSucceeded(workerStateEvent -> {
+                            InputStream okImg = null;
+                            InputStream secondImg = null;
+                            try {
+                                okImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8_ok_480px.png");
+                                secondImg = new FileInputStream("src/main/resources/com/medeasy/img/icons8-circled-2-240.png");
+
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            img1.setImage(new Image(okImg));
+                            img2.setImage(new Image(secondImg));
+                            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/forgetPassword_otp.fxml");
+                            ForgetPasswordOtpController controller = (ForgetPasswordOtpController) fxmlScene.getController();
+                            controller.setData(email.getText(),code,contentArea,img1,img2,img3);
+                            controller.setMainStage(mainStage);
+                            contentArea.getChildren().removeAll();
+                            contentArea.getChildren().setAll(fxmlScene.getRoot());
+                        });
+                        sendOtp.setOnFailed(workerStateEvent -> {
+                            loader.setVisible(false);
+                            ((Button)event.getSource()).setText("Next");
+                        });
+                        Thread thread = new Thread(sendOtp);
+                        thread.setDaemon(true);
+                        thread.start();
+
+                    }
+                    else
+                    {
+                        emailExist.setVisible(true);
+                        loader.setVisible(false);
+                        ((Button)event.getSource()).setText("Next");
+                    }
                 }catch (Exception e)
                 {
                     e.printStackTrace();
