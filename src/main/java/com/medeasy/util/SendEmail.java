@@ -26,7 +26,7 @@ public class SendEmail  extends Task{
 
 
 
-    public void sendMail (String recepient, String subject, String content) throws Exception {
+    public static void sendMail (String recepient, String subject, String content) throws Exception {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
