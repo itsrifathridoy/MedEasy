@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 20; -fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle fill="#1f93ff00" radius="42.0" stroke="BLACK" strokeType="INSIDE">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Circle>
+      <Label text="Rifat Hridoy" />
+      <Label prefHeight="68.0" prefWidth="215.0" text="MBBS (DMC), FCPS (Medicine), MD (Internal Medicine), FACP (USA)" textAlignment="CENTER" wrapText="true">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <StackPane prefHeight="57.0" prefWidth="215.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7accff37" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="121.0">
+               <effect>
+                  <Lighting diffuseConstant="1.43">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Rectangle>
+            <Label text="DERMETOLOGY" textFill="#0097ff">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="215.0">
+         <children>
+            <JFXButton prefHeight="42.0" prefWidth="111.0" text="Availability" HBox.hgrow="ALWAYS" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <JFXButton layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="102.0" text="Send Message" HBox.hgrow="ALWAYS" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </children>
+   <effect>
+      <DropShadow radius="4.75" width="0.0">
+         <color>
+            <Color opacity="0.37370240688323975" />
+         </color>
+      </DropShadow>
+   </effect>
+</VBox>

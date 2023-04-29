@@ -1,5 +1,6 @@
 package com.medeasy.util;
 
+import com.medeasy.models.Admin;
 import com.medeasy.models.Patient;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.concurrent.Task;
@@ -59,6 +60,24 @@ public class DatabaseConnection {
                     patient.setUsername(resultSet.getString(15));
                 }
                 return patient;
+
+    }
+    public Admin getAdmin(String emailOrUserID, String cell) throws SQLException {
+
+        Admin admin = new Admin();
+        String sql = "SELECT * FROM `admins` WHERE" + "`" + cell + "` LIKE '" + emailOrUserID + "'";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        System.out.println("Before");
+        ResultSet resultSet = statement.executeQuery();
+        System.out.println("After");
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString(2));
+            admin.setUserID(resultSet.getString(1));
+            admin.setPersonNameEn(resultSet.getString(2));
+            admin.setEmail(resultSet.getString(3));
+            admin.setBlob(resultSet.getBlob(4));
+        }
+        return admin;
 
     }
 

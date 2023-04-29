@@ -20,4 +20,9 @@ module com.medeasy.medeasy {
     opens com.medeasy.models to javafx.fxml;
     exports com.medeasy.util;
     opens com.medeasy.util to javafx.fxml;
+    opens com.medeasy.controllers.admin to javafx.fxml;
+    exports com.medeasy.controllers.admin;
+    opens com.medeasy.controllers.home to javafx.fxml;
+    exports com.medeasy.controllers.home;
+
 }

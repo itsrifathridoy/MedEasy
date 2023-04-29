@@ -102,3 +102,9 @@
     75%{background-color:brown;}
     100% {background-color: red;}
 }
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+.viewport {
+    -fx-background-color: transparent;
+}

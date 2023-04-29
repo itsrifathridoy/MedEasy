@@ -263,7 +263,7 @@ public class LoginController implements Initializable {
 
             String encryptPassword = new Encryption().getEncryptedKey(password.getText());
 
-            String sql = "SELECT COUNT(1) FROM users WHERE email = ? AND password = ?";
+            String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 
             HashMap<Integer,Object> queries = new HashMap<>();
             queries.put(1,email.getText());
@@ -273,11 +273,13 @@ public class LoginController implements Initializable {
                 databaseReadCall.setOnSucceeded(event -> {
                     resultSet = databaseReadCall.getValue();
                     try {
-                        int count = 0;
+                        String  role;
                         if (resultSet.next()) {
-                            count = resultSet.getInt(1);
+                            role = resultSet.getString(4);
+                        } else {
+                            role = null;
                         }
-                        if (count==1)
+                        if (role!=null)
                         {
                             loginFailedWarning.setVisible(false);
 
@@ -294,13 +296,25 @@ public class LoginController implements Initializable {
                             };
 
                             task.setOnSucceeded(e->{
-                                LoginInfoSave.saveLoginInfo(email.getText(),encryptPassword);
-                                FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
-                                ((HomeController)fxmlScene.getController()).setEmail(email.getText());
-                                Scene scene = new Scene(fxmlScene.getRoot());
-                                Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                                stage.setScene(scene);
-                                stage.show();
+                                LoginInfoSave.saveLoginInfo(email.getText(),encryptPassword,role);
+                                if(role.equals("PATIENT")) {
+                                    FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
+                                    ((DashboardController) fxmlScene.getController()).setEmail(email.getText());
+                                    Scene scene = new Scene(fxmlScene.getRoot());
+                                    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                    stage.setScene(scene);
+                                    stage.show();
+                                }
+                                else if(role.equals("ADMIN"))
+                                {
+                                    FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/adminHome.fxml");
+                                    Scene scene = new Scene(fxmlScene.getRoot());
+                                    AdminHomeController controller = (AdminHomeController) fxmlScene.getController();
+                                    controller.setEmail(email.getText());
+                                    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                    stage.setScene(scene);
+                                    stage.show();
+                                }
                             });
                             new Thread(task).start();
 
@@ -311,6 +325,7 @@ public class LoginController implements Initializable {
                             loginFailedWarning.setVisible(true);
                         }
                     } catch (Exception ex) {
+                        ex.printStackTrace();
                         Alert alert = new Alert(Alert.AlertType.ERROR,"Database Connection Failed");
                         alert.show();
                     }

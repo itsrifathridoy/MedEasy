@@ -6,10 +6,8 @@ import com.medeasy.models.Patient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -113,10 +111,10 @@ public class VerifyAccountController implements Initializable {
                     int patientRowsInserted = databaseWriter.getRowInserted();
 
                     if (patientRowsInserted > 0 && userRowInserted>0) {
-                        LoginInfoSave.saveLoginInfo(patient.getEmail(), encryptedSecret);
+                        LoginInfoSave.saveLoginInfo(patient.getEmail(), encryptedSecret,"PATIENT");
                         FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
-                        HomeController homeController = (HomeController) fxmlScene.getController();
-                        homeController.setEmail(patient.getEmail());
+                        DashboardController dashboardController = (DashboardController) fxmlScene.getController();
+                        dashboardController.setEmail(patient.getEmail());
                         Scene scene = new Scene(fxmlScene.getRoot());
                         mainStage.setScene(scene);
                         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

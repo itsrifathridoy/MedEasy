@@ -1,14 +1,24 @@
 package com.medeasy.models;
 
+import java.sql.Blob;
+
 public class User {
     protected String userID;
     protected String email;
     protected String role;
+    protected Blob blob;
 
     public User(String userID, String email, String role) {
         this.userID = userID;
         this.email = email;
         this.role = role;
+    }
+
+    public User(String userID, String email, String role, Blob blob) {
+        this.userID = userID;
+        this.email = email;
+        this.role = role;
+        this.blob = blob;
     }
 
     public User(String userID, String email) {
@@ -36,6 +46,13 @@ public class User {
         this.email = email;
     }
 
+    public Blob getBlob() {
+        return blob;
+    }
+
+    public void setBlob(Blob blob) {
+        this.blob = blob;
+    }
 
     public String getRole() {
         return role;

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane opacity="0.65" prefHeight="717.0" prefWidth="1184.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.HomeController">
+<AnchorPane opacity="0.65" prefHeight="717.0" prefWidth="1184.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.DashboardController">
    <children>
       <Pane layoutX="8.0" layoutY="26.0" prefHeight="691.0" prefWidth="1184.0" style="-fx-background-color: BACBD0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

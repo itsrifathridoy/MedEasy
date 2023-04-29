@@ -1,23 +1,20 @@
 package com.medeasy;
 
-import com.medeasy.controllers.HomeController;
+import com.medeasy.controllers.AdminHomeController;
+import com.medeasy.controllers.DashboardController;
 import com.medeasy.util.DatabaseConnection;
 import com.medeasy.util.FXMLScene;
 import com.medeasy.util.LoginInfoSave;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Main extends Application {
@@ -30,17 +27,39 @@ public class Main extends Application {
         String[] loginInfo = LoginInfoSave.getLoginInfo();
         String email = loginInfo[0];
         String password = loginInfo[1];
+        String role = loginInfo[2];
         boolean isAutoLogin = false;
-        if(email!=null && password!=null)
+        if(email!=null && password!=null && role!=null)
         {
             isAutoLogin = isSaved(email,password);
 
         }
-        if(isAutoLogin)
+        if(isAutoLogin && role.equals("PATIENT"))
         {
+
             FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
-            HomeController homeController = (HomeController) fxmlScene.getController();
-            homeController.setEmail(email);
+            DashboardController dashboardController = (DashboardController) fxmlScene.getController();
+            dashboardController.setEmail(email);
+            Scene scene = new Scene(fxmlScene.getRoot(), Color.TRANSPARENT);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        }
+        else if(isAutoLogin && role.equals("ADMIN"))
+        {
+
+            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/adminHome.fxml");
+            Scene scene = new Scene(fxmlScene.getRoot(), Color.TRANSPARENT);
+            AdminHomeController controller = (AdminHomeController) fxmlScene.getController();
+            controller.setEmail(email);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        }
+        else if(isAutoLogin && role.equals("DOCTOR"))
+        {
+
+            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/home.fxml");
             Scene scene = new Scene(fxmlScene.getRoot(), Color.TRANSPARENT);
             stage.setScene(scene);
             stage.centerOnScreen();

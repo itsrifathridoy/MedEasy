@@ -12,6 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -34,6 +36,8 @@ public class ForgetPasswordChangePassController implements Initializable {
     private TextField password;
     @FXML
     private TextField confirmPassword;
+    @FXML
+    private Label warning;
     private Patient patient;
     private ImageView img1;
     private ImageView img2;
@@ -49,9 +53,11 @@ public class ForgetPasswordChangePassController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(()->{
-            Main.enableMove(contentArea.getScene(),(Stage) contentArea.getScene().getWindow());
-        });
+        warning.setVisible(false);
+
+//        Platform.runLater(()->{
+//            Main.enableMove(contentArea.getScene(),(Stage) contentArea.getScene().getWindow());
+//        });
     }
 
     public void setData(String email) {
@@ -59,7 +65,7 @@ public class ForgetPasswordChangePassController implements Initializable {
     }
 
     public void changePassword(ActionEvent actionEvent) throws SQLException, IOException, ClassNotFoundException {
-
+        warning.setVisible(false);
         if (password.getText().equals(confirmPassword.getText())) {
             String updatePasswordSQL = "UPDATE users SET `password` = ? WHERE email = ?";
             HashMap<Integer,Object> passMap = new HashMap<>();
@@ -73,6 +79,10 @@ public class ForgetPasswordChangePassController implements Initializable {
                 {
                     System.out.println("Password Changed");
                     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION,"Password Changed", ButtonType.OK);
+                    alert.setTitle("Changed Password");
+                    alert.setHeaderText("Your Password has benn changed successfully");
+                    alert.show();
                     stage.close();
                 }
                 else
@@ -84,8 +94,9 @@ public class ForgetPasswordChangePassController implements Initializable {
             }
 
         } else {
-            System.out.println("Please Enter Your Password");
+            warning.setVisible(true);
         }
+
 
     }
     public void close(MouseEvent me) {
