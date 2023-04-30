@@ -29,10 +29,9 @@ public class DatabaseConnection {
         connection.close();
     }
 
-    public void queryData(String sql) throws SQLException {
+    public ResultSet queryData(String sql) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.executeQuery(sql);
-        connection.close();
+        return statement.executeQuery(sql);
     }
 
     public Patient getPatient(String emailOrBirthId, String cell) throws SQLException {

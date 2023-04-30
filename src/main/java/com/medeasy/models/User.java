@@ -26,6 +26,11 @@ public class User {
         this.email = email;
     }
 
+    public User(String userID, Blob blob) {
+        this.userID = userID;
+        this.blob = blob;
+    }
+
     public User() {
 
     }

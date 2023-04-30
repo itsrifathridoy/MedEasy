@@ -108,3 +108,12 @@
 .viewport {
     -fx-background-color: transparent;
 }
+
+.field{
+    -fx-background-color: #ffff;
+    -jfx-unfocus-color : #bcbcbc;
+    -fx-font-size: 18px;
+    -jfx-focus-color: #3939ff;
+    -fx-text-fill: #4d4d4d
+
+}

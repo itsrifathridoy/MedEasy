@@ -11,6 +11,7 @@ module com.medeasy.medeasy {
     requires mysql.connector.j;
     requires java.sql;
     requires java.prefs;
+    requires org.controlsfx.controls;
 
     opens com.medeasy.controllers to javafx.fxml;
     exports com.medeasy.controllers;
