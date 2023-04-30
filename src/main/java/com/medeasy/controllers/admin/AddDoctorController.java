@@ -47,40 +47,40 @@ public class AddDoctorController implements Initializable {
     private BorderPane rootPane;
 
     @FXML
-    private JFXTextField doctorName;
+    private TextField doctorName;
 
     @FXML
-    private JFXTextField email;
+    private TextField email;
 
     @FXML
-    private JFXComboBox<String> gender;
+    private ComboBox<String> gender;
 
     @FXML
     private DatePicker dob;
 
     @FXML
-    private JFXTextField hospital;
+    private TextField hospital;
 
     @FXML
-    private JFXTextField hospitalAddress;
+    private TextField hospitalAddress;
 
     @FXML
-    private JFXTextField speciality;
+    private TextField speciality;
 
     @FXML
-    private JFXTextField numOfOperations;
+    private TextField numOfOperations;
 
     @FXML
-    private JFXTextField numOfAppointments;
+    private TextField numOfAppointments;
 
     @FXML
-    private JFXTextField qualification;
+    private TextField qualification;
 
     @FXML
-    private JFXTextField designation;
+    private TextField designation;
 
     @FXML
-    private JFXTextField mobile;
+    private TextField mobile;
     private Doctor doctor;
 
 
@@ -134,10 +134,6 @@ public class AddDoctorController implements Initializable {
         gender.setItems(items);
     }
 
-    @FXML
-    void addDoctor(ActionEvent event) {
-
-    }
 
     @FXML
     void doctors(ActionEvent event) {
