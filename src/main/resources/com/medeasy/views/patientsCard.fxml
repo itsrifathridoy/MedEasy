@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 20; -fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.admin.PatientCardController">
+   <children>
+      <Circle fx:id="picture" fill="#1f93ff00" radius="42.0" stroke="BLACK" strokeType="INSIDE">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Circle>
+      <VBox alignment="TOP_CENTER" maxHeight="109.0" maxWidth="215.0" prefHeight="109.0" prefWidth="215.0" spacing="10.0">
+         <children>
+            <Label fx:id="name" maxWidth="-Infinity" text="Rifat" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lastAppointment" maxWidth="-Infinity" text="Last Appoinement: Dr. Rifat Hridoy" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="bloodGroup" text="Blood Group: B+" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </VBox>
+      <StackPane prefHeight="57.0">
+         <children>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" style="-fx-background-radius: 20; -fx-background-color: #7accff37;" textAlignment="CENTER" wrapText="true">
+               <graphic>
+                  <Label fx:id="disease" text="Heart Disease" textFill="#0097ff" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </graphic>
+               <padding>
+                  <Insets bottom="6.0" left="16.0" right="16.0" top="6.0" />
+               </padding>
+            </JFXButton>
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="215.0">
+         <children>
+            <JFXButton onAction="#viewDetails" prefHeight="42.0" prefWidth="111.0" text="View Details" HBox.hgrow="ALWAYS" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <JFXButton layoutX="10.0" layoutY="10.0" onAction="#sendMessage" prefHeight="42.0" prefWidth="102.0" text="Send Message" HBox.hgrow="ALWAYS" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </children>
+   <effect>
+      <DropShadow radius="4.75" width="0.0">
+         <color>
+            <Color opacity="0.37370240688323975" />
+         </color>
+      </DropShadow>
+   </effect>
+</VBox>

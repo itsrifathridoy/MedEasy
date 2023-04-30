@@ -47,7 +47,7 @@ public class DetailsViewController implements Initializable {
     public void setPatient(Patient patient) {
 
         this.patient = patient;
-        if(!patient.getPersonNameEn().equals("") && !patient.getFatherNameEn().equals("") && !patient.getMotherNameEn().equals(""))
+        if(patient.getPersonNameEn()!=null)
         {
             name.setText(patient.getPersonNameEn());
             dob.setText(patient.getDob());

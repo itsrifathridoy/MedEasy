@@ -4,12 +4,15 @@ import com.medeasy.Main;
 import com.medeasy.models.Admin;
 import com.medeasy.models.Patient;
 import com.medeasy.util.DatabaseConnection;
+import com.medeasy.util.FXMLScene;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -31,7 +34,7 @@ import java.util.UUID;
 
 public class AdminHomeController implements Initializable {
     @FXML
-    Rectangle img;
+    private BorderPane rootPane;
 
     @FXML
     private Label date;
@@ -43,13 +46,54 @@ public class AdminHomeController implements Initializable {
     private Label name;
 
     @FXML
+    private Rectangle img;
+
+    @FXML
     private Label numOfDoctors;
 
     @FXML
     private Label numOfPatients;
-    @FXML
-    private BorderPane rootPane;
     private String email;
+
+    @FXML
+    void chatbox(ActionEvent event) {
+
+    }
+
+    @FXML
+    void dashboard(ActionEvent event) {
+        FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/adminHome.fxml");
+        Scene scene = new Scene(fxmlScene.getRoot());
+        AdminHomeController controller = (AdminHomeController) fxmlScene.getController();
+        controller.setEmail(email);
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void logout(ActionEvent event) {
+
+    }
+
+    @FXML
+    void profile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void patients(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/medeasy/views/patientsList.fxml"));
+
+            Parent root = loader.load();
+            rootPane.setCenter(root);
+            rootPane.setRight(null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public void setEmail(String email) {
         this.email = email;

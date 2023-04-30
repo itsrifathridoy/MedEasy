@@ -86,7 +86,7 @@ public class VerifyInputController implements Initializable {
     }
     public void setPatient(Patient patient) {
         this.patient = patient;
-        if(!patient.getPersonNameEn().equals(""))
+        if(patient.getPersonNameEn()!=null)
         {
             username.setText(patient.getPersonNameEn());
         }

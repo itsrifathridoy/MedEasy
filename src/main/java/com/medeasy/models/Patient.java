@@ -1,5 +1,7 @@
 package com.medeasy.models;
 
+import java.sql.Blob;
+
 public class Patient extends User{
     private String bId;
     private String personNameBn;
@@ -14,7 +16,41 @@ public class Patient extends User{
     private String officeNameBn;
     private String officeNameEn;
     private String username;
+    private String lastAppointment;
+    private String disease;
+    private String bloodGroup;
 
+    public String getDisease() {
+        return disease;
+    }
+
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public String getLastAppointment() {
+        return lastAppointment;
+    }
+
+    public void setLastAppointment(String lastAppointment) {
+        this.lastAppointment = lastAppointment;
+    }
+
+    public Patient(String userID, String username, String lastAppointment, String bloodGroup, String disease,Blob blob) {
+        super(userID, blob);
+        this.username = username;
+        this.lastAppointment = lastAppointment;
+        this.disease = disease;
+        this.bloodGroup = bloodGroup;
+    }
 
     public Patient()
     {
@@ -216,9 +252,13 @@ public class Patient extends User{
                 ", officeNameBn='" + officeNameBn + '\'' +
                 ", officeNameEn='" + officeNameEn + '\'' +
                 ", username='" + username + '\'' +
+                ", lastAppointment='" + lastAppointment + '\'' +
+                ", disease='" + disease + '\'' +
+                ", bloodGroup='" + bloodGroup + '\'' +
                 ", userID='" + userID + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
+                ", blob=" + blob +
                 '}';
     }
 }
