@@ -48,14 +48,20 @@ public class PatientCardController implements Initializable {
                     lastAppointment.setText(patient.getLastAppointment());
                     disease.setText(patient.getDisease());
                     bloodGroup.setText(patient.getBloodGroup());
-
-                    String path = "temp/" + patient.getUserID() + ".png";
-                    byte byteArray[] = patient.getBlob().getBytes(1, (int) patient.getBlob().length());
-                    FileOutputStream outPutStream = new FileOutputStream(path);
-                    outPutStream.write(byteArray);
-                    outPutStream.close();
-                    FileInputStream imgStream = new FileInputStream(path);
-                    picture.setFill(new ImagePattern(new Image(imgStream)));
+                    if(patient.getBlob()!=null) {
+                        String path = "temp/" + patient.getUserID() + ".png";
+                        byte byteArray[] = patient.getBlob().getBytes(1, (int) patient.getBlob().length());
+                        FileOutputStream outPutStream = new FileOutputStream(path);
+                        outPutStream.write(byteArray);
+                        outPutStream.close();
+                        FileInputStream imgStream = new FileInputStream(path);
+                        picture.setFill(new ImagePattern(new Image(imgStream)));
+                    }
+                    else
+                    {
+                        FileInputStream imgStream = new FileInputStream("src/main/resources/com/medeasy/img/img_5.png");
+                        picture.setFill(new ImagePattern(new Image(imgStream)));
+                    }
 
                 }
                 catch (Exception e)

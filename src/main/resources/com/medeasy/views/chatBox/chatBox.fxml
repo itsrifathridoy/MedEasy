@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefWidth="1083.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.chat.ChatBoxController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="345.0" style="-fx-background-color: #eff7f8;">
+         <children>
+            <Label text="Chats" textFill="#089bab">
+               <VBox.margin>
+                  <Insets bottom="7.0" top="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <ScrollPane prefWidth="300.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="chatListContainer" alignment="CENTER" spacing="20.0">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="762.0" style="-fx-background-color: white;">
+         <children>
+            <Label text="Select a chat or start a new conversation" />
+         </children></VBox>
+   </children>
+</HBox>

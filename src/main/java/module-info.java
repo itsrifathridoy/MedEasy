@@ -23,7 +23,11 @@ module com.medeasy.medeasy {
     opens com.medeasy.util to javafx.fxml;
     opens com.medeasy.controllers.admin to javafx.fxml;
     exports com.medeasy.controllers.admin;
-    opens com.medeasy.controllers.home to javafx.fxml;
-    exports com.medeasy.controllers.home;
+    opens com.medeasy.controllers.doctor to javafx.fxml;
+    exports com.medeasy.controllers.doctor;
+    opens com.medeasy.controllers.loginReg to javafx.fxml;
+    exports com.medeasy.controllers.loginReg;
+    opens com.medeasy.controllers.chat to javafx.fxml;
+    exports com.medeasy.controllers.chat;
 
 }

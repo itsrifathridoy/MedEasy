@@ -117,3 +117,11 @@
     -fx-text-fill: #4d4d4d
 
 }
+.btn2
+{
+    -fx-padding: 10px 30px;
+    -fx-text-fill: white;
+    -fx-background-color: #4dd1ce;
+    -fx-font-size: 15px;
+    -fx-font-weight: bolder;
+}

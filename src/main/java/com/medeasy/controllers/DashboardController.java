@@ -110,6 +110,6 @@ public class DashboardController implements Initializable {
     @FXML
     private void logout(MouseEvent mouseEvent) {
         LoginInfoSave.clearLoginInfo();
-        FXMLScene.switchScene("/com/medeasy/views/login.fxml", (Node) mouseEvent.getSource());
+        FXMLScene.switchScene("/com/medeasy/views/loginReg/login.fxml", (Node) mouseEvent.getSource());
     }
 }

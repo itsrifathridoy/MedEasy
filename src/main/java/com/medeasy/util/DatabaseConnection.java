@@ -1,6 +1,7 @@
 package com.medeasy.util;
 
 import com.medeasy.models.Admin;
+import com.medeasy.models.Doctor;
 import com.medeasy.models.Patient;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.concurrent.Task;
@@ -37,7 +38,7 @@ public class DatabaseConnection {
     public Patient getPatient(String emailOrBirthId, String cell) throws SQLException {
 
                 Patient patient = new Patient();
-                String sql = "SELECT * FROM `patients` WHERE" + "`" + cell + "` LIKE '" + emailOrBirthId + "'";
+                String sql = "SELECT * FROM `patients` WHERE" + " `" + cell + "` LIKE '" + emailOrBirthId + "'";
                 PreparedStatement statement = connection.prepareStatement(sql);
 
                 ResultSet resultSet = statement.executeQuery();
@@ -79,6 +80,34 @@ public class DatabaseConnection {
         return admin;
 
     }
+
+    public Doctor getDoctor(String userID, String cell) throws SQLException {
+
+        Doctor doctor = new Doctor();
+        String sql = "SELECT * FROM `doctors` WHERE" + " `" + cell + "` LIKE '" + userID + "'";
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            doctor.setUserID(resultSet.getString(1));
+            doctor.setPersonNameEn(resultSet.getString(2));
+            doctor.setGender(resultSet.getString(3));
+            doctor.setDob(resultSet.getString(4));
+            doctor.setEmail(resultSet.getString(5));
+            doctor.setMobile(resultSet.getString(6));
+            doctor.setSpecialities(resultSet.getString(7));
+            doctor.setAppointments(resultSet.getString(8));
+            doctor.setNumOfOperations(resultSet.getString(9));
+            doctor.setQualification(resultSet.getString(10));
+            doctor.setDesignation(resultSet.getString(11));
+            doctor.setHospital(resultSet.getString(12));
+            doctor.setHospitalAddress(resultSet.getString(13));
+            doctor.setBlob(resultSet.getBlob(14));
+        }
+        return doctor;
+
+    }
+
 
 
 }

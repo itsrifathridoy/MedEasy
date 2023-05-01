@@ -2,38 +2,24 @@ package com.medeasy.controllers.admin;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import com.medeasy.controllers.DashboardController;
-import com.medeasy.controllers.ForgetPasswordOtpController;
-import com.medeasy.controllers.VerifyOtpController;
 import com.medeasy.models.Doctor;
 import com.medeasy.models.EmailTemplate;
-import com.medeasy.models.Patient;
 import com.medeasy.util.*;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -175,7 +161,7 @@ public class AddDoctorController implements Initializable {
                             createDoctorAccount();
                             try {
                                 FXMLLoader loader = new FXMLLoader();
-                                loader.setLocation(getClass().getResource("/com/medeasy/views/doctorsList.fxml"));
+                                loader.setLocation(getClass().getResource("/com/medeasy/views/doctors/doctorsList.fxml"));
 
                                 Parent root = loader.load();
                                 rootPane.setCenter(root);

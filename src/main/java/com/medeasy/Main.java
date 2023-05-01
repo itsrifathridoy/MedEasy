@@ -1,7 +1,8 @@
 package com.medeasy;
 
-import com.medeasy.controllers.AdminHomeController;
+import com.medeasy.controllers.admin.AdminHomeController;
 import com.medeasy.controllers.DashboardController;
+import com.medeasy.controllers.doctor.DoctorHomeController;
 import com.medeasy.util.DatabaseConnection;
 import com.medeasy.util.FXMLScene;
 import com.medeasy.util.LoginInfoSave;
@@ -28,6 +29,7 @@ public class Main extends Application {
         String email = loginInfo[0];
         String password = loginInfo[1];
         String role = loginInfo[2];
+        String userID = loginInfo[3];
         boolean isAutoLogin = false;
         if(email!=null && password!=null && role!=null)
         {
@@ -48,7 +50,7 @@ public class Main extends Application {
         else if(isAutoLogin && role.equals("ADMIN"))
         {
 
-            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/adminHome.fxml");
+            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/admin/adminHome.fxml");
             Scene scene = new Scene(fxmlScene.getRoot(), Color.TRANSPARENT);
             AdminHomeController controller = (AdminHomeController) fxmlScene.getController();
             controller.setEmail(email);
@@ -59,14 +61,16 @@ public class Main extends Application {
         else if(isAutoLogin && role.equals("DOCTOR"))
         {
 
-            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/home.fxml");
+            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/doctors/doctorHome.fxml");
+            DoctorHomeController controller = (DoctorHomeController) fxmlScene.getController();
+            controller.setDoctorID(userID);
             Scene scene = new Scene(fxmlScene.getRoot(), Color.TRANSPARENT);
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();
         }
         else {
-            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/login.fxml");
+            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/loginReg/login.fxml");
             Scene scene = new Scene(fxmlScene.getRoot(), Color.TRANSPARENT);
             stage.setScene(scene);
             stage.centerOnScreen();

@@ -38,6 +38,10 @@ public class Doctor extends User{
         this.hospitalAddress = hospitalAddress;
     }
 
+    public Doctor() {
+
+    }
+
     public String getPersonNameEn() {
         return personNameEn;
     }
