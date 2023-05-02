@@ -3,6 +3,7 @@ package com.medeasy.controllers.loginReg;
 import com.medeasy.controllers.DashboardController;
 import com.medeasy.controllers.admin.AdminHomeController;
 import com.medeasy.controllers.doctor.DoctorHomeController;
+import com.medeasy.controllers.patient.PatientHomeController;
 import com.medeasy.util.DatabaseReadCall;
 import com.medeasy.util.Encryption;
 import com.medeasy.util.FXMLScene;
@@ -306,7 +307,7 @@ public class LoginController implements Initializable {
                                 LoginInfoSave.saveLoginInfo(email.getText(),encryptPassword,role,userID);
                                 if(role.equals("PATIENT")) {
                                     FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/patients/patientHome.fxml");
-                                    ((DashboardController) fxmlScene.getController()).setEmail(email.getText());
+                                    ((PatientHomeController) fxmlScene.getController()).setUserID(userID);
                                     Scene scene = new Scene(fxmlScene.getRoot());
                                     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                                     stage.setScene(scene);

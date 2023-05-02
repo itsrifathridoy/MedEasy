@@ -1,0 +1,85 @@
+.backgroundColor{
+    -fx-background-color: linear-gradient(to top, #D87348, #5F7A93);
+}
+.backgroundColor1{
+    -fx-background-color: linear-gradient(to right, #000000 , #212A32);
+}
+.backgroundColor2{
+    -fx-background-color: linear-gradient(to top, #D87348, #D08D62);
+}
+.backgroundColor3{
+    -fx-background-color: linear-gradient(to top, #E4AE54, #E1BC7D);
+}
+.backgroundColor4{
+    -fx-background-color: linear-gradient(to right, #BCB1A2, #D5CEA8);
+}
+.backgroundColor5{
+    -fx-background-color: linear-gradient(to right, #B9CACA, #FEFBF7);
+}
+.backgroundColor6{
+    -fx-background-color: linear-gradient(to top, #35434F,#513345);
+}
+.backgroundColor7{
+    -fx-background-color: linear-gradient(to right, #3B3563,  #2b283e);
+}
+
+.backgroundColor8{
+    -fx-background-color: linear-gradient(to top, #35233b,#1f222b);
+}
+.buttonBackground1{
+    -fx-background-color: linear-gradient(to top, #9F7F51, #CBAF85);
+}
+.buttonBackground2{
+    -fx-background-color: linear-gradient(to top, #56816E, #89A999);
+}
+.close-btn:hover{
+    -fx-background-color:  #9E88DE;
+}
+.close-btn2:hover{
+    -fx-background-color:  #8e939c;
+}
+.close-btn3:hover{
+    -fx-background-color:  #F94B60;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: #0E121C;
+    -fx-border-color:  #272634;
+}
+
+
+.scroll-pane .scroll-bar:vertical{
+    -fx-background-color:  #272634;
+    -fx-border-color:  #272634;
+}
+.scroll-pane .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color:  #272634;
+    -fx-background-radius: 0cm;
+    -fx-border-radius:0cm;
+
+}
+.scroll-pane .scroll-bar:vertical .decrement-button{
+    -fx-background-color: transparent;
+    -fx-border-color:  #272634;
+    -fx-background-radius: 0cm;
+    -fx-border-radius:0cm;
+    -fx-padding: 3px;
+}
+.scroll-pane .scroll-bar:horizontal .decrement-button{
+    -fx-background-color: transparent;
+    -fx-border-color:  #272634;
+    -fx-background-radius: 0cm;
+    -fx-border-radius:0cm;
+    -fx-padding: 3px;
+}
+.scroll-pane .scroll-bar:horizontal{
+    -fx-background-color:  #272634;
+    -fx-border-color:  #272634;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb{
+    -fx-background-color: #686868;
+}
+.scroll-pane .scroll-bar:horizontal .thumb{
+    -fx-background-color: #686868;
+}

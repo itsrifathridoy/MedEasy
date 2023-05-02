@@ -1,12 +1,8 @@
 package com.medeasy.controllers.admin;
 
-import com.medeasy.chatsocket.Client;
-import com.medeasy.chatsocket.ReadThreadClient;
-import com.medeasy.chatsocket.WriteThreadClient;
-import com.medeasy.controllers.chat.ChatBoxController;
+import com.medeasy.chatsocket.chat.controller.ClientFormController;
 import com.medeasy.models.Admin;
 import com.medeasy.util.*;
-import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,34 +61,18 @@ public class AdminHomeController extends Thread implements Initializable {
         this.userID = userID;
     }
 
-    private void connectSocket() {
-        try {
-            socket = new Socket("localhost", 5000);
-            System.out.println("Connect With Server");
-
-            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            printWriter = new PrintWriter(socket.getOutputStream(), true);
-            this.start();
-        } catch (IOException e) {
-
-        }
-    }
-
 
     @FXML
     void chatbox(ActionEvent event) throws IOException {
-//        Client client = new Client(userID, Dotenv.load().get("SOCKET_SERVER_ADDRESS"),Integer.parseInt(Dotenv.load().get("SOCKET_SERVER_PORT")));
-        connectSocket();
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/medeasy/views/chatBox/chatBox.fxml"));
+            loader.setLocation(getClass().getResource("/com/medeasy/views/chatbox.fxml"));
 
             Parent root = loader.load();
-            ChatBoxController controller = loader.getController();
+            ClientFormController controller = loader.getController();
             System.out.println(controller);
-            System.out.println(getClass().getSimpleName()+userID);
-            controller.setUserID(userID);
+            controller.setUsername(name.getText());
             rootPane.setCenter(root);
             rootPane.setRight(null);
             rootPane.setTop(null);

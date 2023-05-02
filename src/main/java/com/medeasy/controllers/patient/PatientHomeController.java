@@ -1,5 +1,6 @@
 package com.medeasy.controllers.patient;
 
+import com.medeasy.chatsocket.chat.controller.ClientFormController;
 import com.medeasy.controllers.admin.AdminHomeController;
 import com.medeasy.controllers.admin.DoctorCardController;
 import com.medeasy.controllers.admin.PatientCardController;
@@ -96,8 +97,23 @@ public class PatientHomeController implements Initializable {
     private ArrayList<Patient> patientList;
 
     @FXML
-    void chatbox(ActionEvent event) {
+    void chatbox(ActionEvent event) throws IOException {
 
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/medeasy/views/chatBox/chatBox.fxml"));
+
+            Parent root = loader.load();
+            ClientFormController controller = loader.getController();
+            System.out.println(controller);
+            System.out.println(getClass().getSimpleName()+userID);
+            controller.setUsername(userID);
+            rootPane.setCenter(root);
+            rootPane.setRight(null);
+            rootPane.setTop(null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setUserID(String userID) {
@@ -120,7 +136,9 @@ public class PatientHomeController implements Initializable {
     }
     @FXML
     void records(ActionEvent event) {
-
+        FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/patients/records.fxml");
+        rootPane.setCenter(fxmlScene.getRoot());
+        rootPane.setRight(null);
     }
 
     @FXML
@@ -198,10 +216,11 @@ public class PatientHomeController implements Initializable {
                     FileInputStream imgStream = new FileInputStream(path);
                     img.setFill(new ImagePattern(new Image(imgStream)));
                 }
-                LocalDate birthDate = LocalDate.parse(patient.getDob(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                LocalDate currentDate = LocalDate.now();
-                String ageStr =((Period.between(birthDate,currentDate).getYears()>0)?(Period.between(birthDate,currentDate).getYears()+" Years "):("")) + ((Period.between(birthDate,currentDate).getMonths()>0)?(Period.between(birthDate,currentDate).getMonths()+ " Months "):(""))+ ((Period.between(birthDate,currentDate).getDays()>0)?(Period.between(birthDate,currentDate).getDays()+" Days"):(""));
-                age.setText(ageStr);
+
+//                LocalDate birthDate = LocalDate.parse(patient.getDob(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//                LocalDate currentDate = LocalDate.now();
+//                String ageStr =((Period.between(birthDate,currentDate).getYears()>0)?(Period.between(birthDate,currentDate).getYears()+" Years "):("")) + ((Period.between(birthDate,currentDate).getMonths()>0)?(Period.between(birthDate,currentDate).getMonths()+ " Months "):(""))+ ((Period.between(birthDate,currentDate).getDays()>0)?(Period.between(birthDate,currentDate).getDays()+" Days"):(""));
+//                age.setText(ageStr);
                 height.setText(patient.getHeight());
                 weight.setText(patient.getWeight());
 

@@ -30,7 +30,14 @@ module com.medeasy.medeasy {
     exports com.medeasy.controllers.patient;
     opens com.medeasy.controllers.loginReg to javafx.fxml;
     exports com.medeasy.controllers.loginReg;
-    opens com.medeasy.controllers.chat to javafx.fxml;
-    exports com.medeasy.controllers.chat;
 
+    opens com.medeasy.chatsocket.chat.controller to javafx.fxml;
+    exports com.medeasy.chatsocket.chat.controller;
+
+    opens com.medeasy.chatsocket.chat to javafx.fxml;
+    exports com.medeasy.chatsocket.chat;
+
+
+    opens com.medeasy.chatsocket to javafx.fxml;
+    exports com.medeasy.chatsocket;
 }
