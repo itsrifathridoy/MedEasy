@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.patient.ProfileController">
+   <children>
+      <AnchorPane prefHeight="151.0" prefWidth="1030.0">
+         <children>
+            <Rectangle fx:id="img" arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="163.0" layoutX="842.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <Label layoutX="52.0" layoutY="81.0" text="Profile View">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="248.0" prefWidth="985.0" style="-fx-background-color: #daeeff; -fx-background-radius: 10;">
+         <VBox.margin>
+            <Insets bottom="15.0" left="30.0" right="15.0" top="15.0" />
+         </VBox.margin>
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="202.0" prefWidth="562.0" spacing="7.0" style="-fx-background-color: #fff; -fx-background-radius: 20;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="66.0" prefWidth="486.0" style="-fx-background-color: #4dd1ce; -fx-background-radius: 20 20 0 0;" text="Personal Information" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Baskerville Old Face" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Name:" textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="27.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <Label fx:id="name" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Father's Name:" textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="27.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <Label fx:id="fatherName" text="Label" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Mother's Name" textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="27.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <Label fx:id="motherName" text="Label" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="37.0" layoutY="140.0" text="Date Of Birth:" textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="dob" text="Label" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets left="27.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <Pane layoutX="25.0" layoutY="25.0" prefHeight="232.0" prefWidth="516.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" layoutY="-1.0" prefHeight="64.0" prefWidth="440.0" style="-fx-background-color: #4dd1ce; -fx-background-radius: 20 20 0 0;" text="You Have a Doctor's Appointment" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Baskerville Old Face" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="20.0" layoutY="71.0" text="Email: " textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="email" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="21.0" layoutY="109.0" text="Address:" textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="address" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="21.0" layoutY="143.0" text="Username:" textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="username" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="238.0" prefWidth="679.0" style="-fx-background-color: #daeeff; -fx-background-radius: 10;">
+         <VBox.margin>
+            <Insets bottom="15.0" left="30.0" right="15.0" top="15.0" />
+         </VBox.margin>
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Pane prefHeight="202.0" prefWidth="551.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="64.0" prefWidth="480.0" style="-fx-background-color: #4dd1ce; -fx-background-radius: 20 20 0 0;" text="You Have to Take Medicine" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Baskerville Old Face" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="30.0" layoutY="89.0" text="Blood Group: " textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="bloodGroup" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="32.0" layoutY="127.0" text="Height: " textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="height" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="33.0" layoutY="164.0" text="Weight:" textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="weight" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="25.0" layoutY="25.0" prefHeight="232.0" prefWidth="516.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="-2.0" prefHeight="66.0" prefWidth="448.0" style="-fx-background-color: #4dd1ce; -fx-background-radius: 20 20 0 0;" text="You Have a Doctor's Appointment" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Baskerville Old Face" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="23.0" layoutY="77.0" text="Last Appointment: " textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="lastAppointment" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="26.0" layoutY="112.0" text="Current Disease:" textFill="#089bab">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <Label fx:id="currentDisease" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

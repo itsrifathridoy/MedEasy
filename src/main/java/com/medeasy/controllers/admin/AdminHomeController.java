@@ -5,10 +5,7 @@ import com.medeasy.chatsocket.ReadThreadClient;
 import com.medeasy.chatsocket.WriteThreadClient;
 import com.medeasy.controllers.chat.ChatBoxController;
 import com.medeasy.models.Admin;
-import com.medeasy.util.DatabaseConnection;
-import com.medeasy.util.FXMLScene;
-import com.medeasy.util.LoginInfoSave;
-import com.medeasy.util.NetworkUtil;
+import com.medeasy.util.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -32,6 +29,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class AdminHomeController extends Thread implements Initializable {
@@ -60,6 +58,9 @@ public class AdminHomeController extends Thread implements Initializable {
     private BufferedReader bufferedReader;
     private Socket socket;
     PrintWriter printWriter;
+    @FXML
+    private Label grettings;
+
     public void setUserID(String userID) {
         this.userID = userID;
     }
@@ -126,7 +127,7 @@ public class AdminHomeController extends Thread implements Initializable {
     void patients(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/medeasy/views/patients/patientsList.fxml"));
+            loader.setLocation(getClass().getResource("/com/medeasy/views/admin/patientsList.fxml"));
 
             Parent root = loader.load();
             rootPane.setCenter(root);
@@ -173,15 +174,18 @@ public class AdminHomeController extends Thread implements Initializable {
                 String path = "temp/"+admin.getUserID()+".png";
                 System.out.println(admin);
                 setUserID(admin.getUserID());
-                name.setText("Good Morning, "+admin.getPersonNameEn());
+                grettings.setText(new GreetingMaker(LocalTime.now()).printTimeOfDay());
+                name.setText(admin.getPersonNameEn());
                 numOfDoctors.setText(String.valueOf(numOfDoctor));
                 numOfPatients.setText(String.valueOf(numOfPatient));
-                byte byteArray[] = admin.getBlob().getBytes(1, (int) admin.getBlob().length());
-                FileOutputStream outPutStream = new FileOutputStream(path);
-                outPutStream.write(byteArray);
-                outPutStream.close();
-                FileInputStream imgStream = new FileInputStream(path);
-                img.setFill(new ImagePattern(new Image(imgStream)));
+                if(admin.getBlob()!=null) {
+                    byte byteArray[] = admin.getBlob().getBytes(1, (int) admin.getBlob().length());
+                    FileOutputStream outPutStream = new FileOutputStream(path);
+                    outPutStream.write(byteArray);
+                    outPutStream.close();
+                    FileInputStream imgStream = new FileInputStream(path);
+                    img.setFill(new ImagePattern(new Image(imgStream)));
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (FileNotFoundException e) {

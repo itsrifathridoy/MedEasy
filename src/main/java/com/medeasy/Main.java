@@ -3,6 +3,7 @@ package com.medeasy;
 import com.medeasy.controllers.admin.AdminHomeController;
 import com.medeasy.controllers.DashboardController;
 import com.medeasy.controllers.doctor.DoctorHomeController;
+import com.medeasy.controllers.patient.PatientHomeController;
 import com.medeasy.util.DatabaseConnection;
 import com.medeasy.util.FXMLScene;
 import com.medeasy.util.LoginInfoSave;
@@ -39,9 +40,9 @@ public class Main extends Application {
         if(isAutoLogin && role.equals("PATIENT"))
         {
 
-            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
-            DashboardController dashboardController = (DashboardController) fxmlScene.getController();
-            dashboardController.setEmail(email);
+            FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/patients/patientHome.fxml");
+            PatientHomeController controller = (PatientHomeController) fxmlScene.getController();
+            controller.setUserID(userID);
             Scene scene = new Scene(fxmlScene.getRoot(), Color.TRANSPARENT);
             stage.setScene(scene);
             stage.centerOnScreen();

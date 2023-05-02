@@ -12,6 +12,7 @@ module com.medeasy.medeasy {
     requires java.sql;
     requires java.prefs;
     requires org.controlsfx.controls;
+    requires fontawesomefx;
 
     opens com.medeasy.controllers to javafx.fxml;
     exports com.medeasy.controllers;
@@ -25,6 +26,8 @@ module com.medeasy.medeasy {
     exports com.medeasy.controllers.admin;
     opens com.medeasy.controllers.doctor to javafx.fxml;
     exports com.medeasy.controllers.doctor;
+    opens com.medeasy.controllers.patient to javafx.fxml;
+    exports com.medeasy.controllers.patient;
     opens com.medeasy.controllers.loginReg to javafx.fxml;
     exports com.medeasy.controllers.loginReg;
     opens com.medeasy.controllers.chat to javafx.fxml;

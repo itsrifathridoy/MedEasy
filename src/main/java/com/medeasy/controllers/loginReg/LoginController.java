@@ -305,7 +305,7 @@ public class LoginController implements Initializable {
                             task.setOnSucceeded(e->{
                                 LoginInfoSave.saveLoginInfo(email.getText(),encryptPassword,role,userID);
                                 if(role.equals("PATIENT")) {
-                                    FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/dashboard.fxml");
+                                    FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/patients/patientHome.fxml");
                                     ((DashboardController) fxmlScene.getController()).setEmail(email.getText());
                                     Scene scene = new Scene(fxmlScene.getRoot());
                                     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

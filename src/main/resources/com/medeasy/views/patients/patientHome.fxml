@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="731.0" prefWidth="1280.0" style="-fx-background-color: #eff7f8;" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.patient.PatientHomeController">
+   <center>
+      <VBox prefHeight="731.0" prefWidth="873.0" style="-fx-background-color: #eff7f8;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="201.0" prefWidth="574.0" style="-fx-background-radius: 10px; -fx-background-color: #4dd1ce;">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.3529411554336548" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <SVGPath content="M 0 198.742188 C 121.316406 159.601562 151.589844 139.398438 181.554688 122.542969 C 211.960938 105.9375 242.367188 92.050781 272.332031 102.339844 C 302.605469 112.25 332.703125 146.34375 363.109375 156.253906 C 393.25 166.542969 423.480469 152.65625 453.886719 125.949219 C 483.894531 98.992188 514.257812 58.589844 544.222656 35.042969 C 574.585938 11.242188 612 -11.105469 635 6.066406 L 635 200.003906 L 619.886719 200.003906 C 604.769531 200.003906 574.628906 200.003906 544.222656 200.003906 C 514.125 200.003906 483.851562 200.003906 453.886719 200.003906 C 423.480469 200.003906 393.074219 200.003906 363.109375 200.003906 C 332.835938 200.003906 302.738281 200.003906 272.332031 200.003906 C 242.191406 200.003906 211.960938 200.003906 181.554688 200.003906 C 151.546875 200.003906 121.183594 200.003906 91.21875 200.003906 C 60.855469 200.003906 30.847656 200.003906 15.421875 200.003906 L 0.441406 200.003906 Z M 0 198.742188 " fill="WHITE" layoutX="28.0" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Label fx:id="date" layoutX="28.0" layoutY="16.0" text="Saturday, 10 May, 2023" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="time" layoutX="205.0" layoutY="16.0" text="02:30 AM" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="grettings" layoutX="30.0" layoutY="41.0" text="Good Morning, " textFill="WHITE">
+                     <font>
+                        <Font name="Eras Demi ITC" size="28.0" />
+                     </font>
+                  </Label>
+                  <Rectangle fx:id="img" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="199.0" layoutX="417.0" layoutY="1.0" stroke="#089bab" strokeType="INSIDE" strokeWidth="2.1" width="186.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="name" alignment="TOP_LEFT" layoutX="52.0" layoutY="76.0" prefHeight="85.0" prefWidth="350.0" text="Name" wrapText="true">
+                     <font>
+                        <Font name="Eras Demi ITC" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" top="15.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="248.0" prefWidth="985.0" style="-fx-background-color: #daeeff; -fx-background-radius: 10;">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="30.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="202.0" prefWidth="562.0" spacing="7.0" style="-fx-background-color: #fff; -fx-background-radius: 20;">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Age: " textFill="#089bab">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="27.0" />
+                                 </VBox.margin>
+                                 <graphic>
+                                    <Label fx:id="age" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="44.0" prefWidth="486.0" spacing="14.0">
+                                 <children>
+                                    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Blood Group:" textFill="#089bab">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                       <graphic>
+                                          <Label fx:id="bloodGroup" text="Label" textFill="#3e9491">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </graphic>
+                                    </Label>
+                                    <JFXButton onAction="#findBlood" prefHeight="42.0" prefWidth="245.0" styleClass="btn2" text="Find Blood Donor" />
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Height : " textFill="#089bab">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="27.0" />
+                                 </VBox.margin>
+                                 <graphic>
+                                    <Label fx:id="height" text="Label" textFill="#3e9491">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Weight" textFill="#089bab">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="27.0" />
+                                 </VBox.margin>
+                                 <graphic>
+                                    <Label fx:id="weight" text="Label" textFill="#3e9491">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Pane layoutX="25.0" layoutY="25.0" prefHeight="232.0" prefWidth="516.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                           <children>
+                              <Label alignment="CENTER" layoutY="-1.0" prefHeight="77.0" prefWidth="440.0" style="-fx-background-color: #4dd1ce; -fx-background-radius: 20 20 0 0;" text="You Have a Doctor's Appointment" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Circle fill="DODGERBLUE" layoutX="61.0" layoutY="136.0" radius="43.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="128.0" layoutY="91.0" text="Name: " textFill="#089bab">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label fx:id="appointDoctor" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="130.0" layoutY="118.0" text="Hospital:" textFill="#089bab">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label fx:id="appointHospital" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="130.0" layoutY="146.0" text="TIme:" textFill="#089bab">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label fx:id="appointTime" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children></HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="232.0" prefHeight="238.0" prefWidth="679.0" style="-fx-background-color: #daeeff; -fx-background-radius: 10;">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="30.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Pane prefHeight="202.0" prefWidth="551.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                           <children>
+                              <Label alignment="CENTER" prefHeight="77.0" prefWidth="480.0" style="-fx-background-color: #4dd1ce; -fx-background-radius: 20 20 0 0;" text="You Have to Take Medicine" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="30.0" layoutY="89.0" text="Name: " textFill="#089bab">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label fx:id="medName" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="32.0" layoutY="127.0" text="TIme:" textFill="#089bab">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label fx:id="Medtime" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="18" textFill="#3e9491">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="25.0" layoutY="25.0" prefHeight="232.0" prefWidth="516.0" style="-fx-background-color: #ffff; -fx-background-radius: 20;">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                        </Pane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+         <BorderPane.margin>
+            <Insets left="16.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="731.0" prefWidth="233.0" style="-fx-background-color: #089bab; -fx-background-radius: 0 20 20 0;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="51.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="14.0" />
+               </VBox.margin>
+            </ImageView>
+            <JFXButton graphicTextGap="25.0" onAction="#dashboard" prefHeight="54.0" prefWidth="234.0" styleClass="btn2" text="Dashboard">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/dashboard_layout_96px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" right="15.0" top="10.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="91.0" onAction="#profile" prefHeight="54.0" prefWidth="234.0" text="Profile">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" right="53.0" top="10.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/profile_96px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="155.0" onAction="#doctors" prefHeight="54.0" prefWidth="234.0" text="Doctors">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="39.0" top="10.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/Medical%20Doctor_512px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="214.0" onAction="#records" prefHeight="54.0" prefWidth="234.0" text="Records">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/doc_480px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="39.0" top="10.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="160.0" onAction="#chatbox" prefHeight="54.0" prefWidth="234.0" text="ChatBox">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/chat_96px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="36.0" top="10.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="273.0" onAction="#logout" prefHeight="54.0" prefWidth="234.0" text="Logout">
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/logout_480px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="46.0" top="10.0" />
+               </padding>
+            </JFXButton>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

@@ -154,12 +154,17 @@
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                        <Label fx:id="name" layoutX="28.0" layoutY="53.0" text="Good Morning, Rifat Hridoy">
-                            <font>
-                                <Font name="Eras Demi ITC" size="28.0" />
-                            </font>
-                        </Label>
                   <Rectangle fx:id="img" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="199.0" layoutX="443.0" layoutY="1.0" stroke="#089bab" strokeType="INSIDE" strokeWidth="2.1" width="186.0" />
+                  <Label fx:id="grettings" layoutX="40.0" layoutY="51.0" text="Good Morning, " textFill="WHITE">
+                     <font>
+                        <Font name="Eras Demi ITC" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="name" alignment="TOP_LEFT" layoutX="66.0" layoutY="83.0" prefHeight="85.0" prefWidth="350.0" text="Name" wrapText="true">
+                     <font>
+                        <Font name="Eras Demi ITC" size="24.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
                 <HBox prefHeight="259.0" prefWidth="682.0">

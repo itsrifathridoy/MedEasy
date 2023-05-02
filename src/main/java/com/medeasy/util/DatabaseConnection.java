@@ -58,6 +58,12 @@ public class DatabaseConnection {
                     patient.setOfficeNameBn(resultSet.getString(13));
                     patient.setOfficeNameEn(resultSet.getString(14));
                     patient.setUsername(resultSet.getString(15));
+                    patient.setBloodGroup(resultSet.getString(16));
+                    patient.setLastAppointment(resultSet.getString(17));
+                    patient.setDisease(resultSet.getString(18));
+                    patient.setBlob(resultSet.getBlob(19));
+                    patient.setHeight(resultSet.getString(20));
+                    patient.setWeight(resultSet.getString(21));
                 }
                 return patient;
 

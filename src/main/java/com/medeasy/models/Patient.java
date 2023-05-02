@@ -19,6 +19,8 @@ public class Patient extends User{
     private String lastAppointment;
     private String disease;
     private String bloodGroup;
+    private String height;
+    private String weight;
 
     public String getDisease() {
         return disease;
@@ -260,5 +262,26 @@ public class Patient extends User{
                 ", role='" + role + '\'' +
                 ", blob=" + blob +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.userID.equals(((Patient)obj).userID);
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getHeight() {
+        return this.height;
     }
 }
