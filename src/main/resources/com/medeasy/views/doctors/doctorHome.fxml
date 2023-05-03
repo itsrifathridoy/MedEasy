@@ -199,6 +199,21 @@
                   <Insets bottom="10.0" right="39.0" top="10.0" />
                </padding>
             </JFXButton>
+            <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="273.0" onAction="#appointments" prefHeight="54.0" prefWidth="234.0" text="Appointments">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/sick_208px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" right="-11.0" top="10.0" />
+               </padding>
+            </JFXButton>
             <JFXButton graphicTextGap="25.0" layoutX="10.0" layoutY="160.0" onAction="#chatbox" prefHeight="54.0" prefWidth="234.0" text="ChatBox">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">

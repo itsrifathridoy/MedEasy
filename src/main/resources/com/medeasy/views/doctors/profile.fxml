@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1030.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.patient.PatientProfileController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1030.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.doctor.DoctorProfileController">
    <children>
       <AnchorPane prefHeight="151.0" prefWidth="1030.0">
          <children>
@@ -48,7 +49,7 @@
                               <TextField fx:id="name" disable="true" prefHeight="31.0" prefWidth="357.0" promptText="Name" styleClass="field" />
                            </graphic>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Father's Name:" textFill="#089bab">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Gender: " textFill="#089bab">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -56,18 +57,7 @@
                               <Insets left="27.0" />
                            </VBox.margin>
                            <graphic>
-                              <TextField fx:id="fatherName" disable="true" prefHeight="39.0" prefWidth="298.0" promptText="Father's Name" styleClass="field" />
-                           </graphic>
-                        </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Mother's Name" textFill="#089bab">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="27.0" />
-                           </VBox.margin>
-                           <graphic>
-                              <TextField fx:id="motherName" disable="true" prefHeight="39.0" prefWidth="298.0" promptText="Mother's Name" styleClass="field" />
+                              <ComboBox fx:id="gender" prefWidth="150.0" promptText="Gender" styleClass="field" />
                            </graphic>
                         </Label>
                         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="37.0" layoutY="140.0" text="Date Of Birth:" textFill="#089bab">
@@ -104,20 +94,20 @@
                               <TextField fx:id="email" disable="true" prefHeight="39.0" prefWidth="335.0" promptText="Email" styleClass="field" />
                            </graphic>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="21.0" layoutY="109.0" text="Address:" textFill="#089bab">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="21.0" layoutY="109.0" text="Mobile:" textFill="#089bab">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <TextField fx:id="address" disable="true" prefHeight="39.0" prefWidth="321.0" promptText="Address" styleClass="field" />
+                              <TextField fx:id="mobile" disable="true" prefHeight="39.0" prefWidth="321.0" promptText="Mobile" styleClass="field" />
                            </graphic>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="21.0" layoutY="143.0" text="Username:" textFill="#089bab">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="21.0" layoutY="143.0" text="Qualification:" textFill="#089bab">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <TextField fx:id="username" disable="true" prefHeight="39.0" prefWidth="293.0" promptText="Username" styleClass="field" />
+                              <TextField fx:id="qualification" disable="true" prefHeight="39.0" prefWidth="293.0" promptText="Qualification" styleClass="field" />
                            </graphic>
                         </Label>
                      </children>
@@ -143,28 +133,28 @@
                               <Font name="Baskerville Old Face" size="24.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="30.0" layoutY="89.0" text="Blood Group: " textFill="#089bab">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="30.0" layoutY="89.0" text="Designation" textFill="#089bab">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <TextField fx:id="bloodGroup" disable="true" prefHeight="39.0" prefWidth="291.0" promptText="Blood Group" styleClass="field" />
+                              <TextField fx:id="designation" disable="true" prefHeight="39.0" prefWidth="291.0" promptText="Designation" styleClass="field" />
                            </graphic>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="32.0" layoutY="127.0" text="Height: " textFill="#089bab">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="32.0" layoutY="127.0" text="Speciality" textFill="#089bab">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <TextField fx:id="height" disable="true" prefHeight="31.0" prefWidth="357.0" promptText="Height" styleClass="field" />
+                              <TextField fx:id="speciality" disable="true" prefHeight="31.0" prefWidth="357.0" promptText="Speciality" styleClass="field" />
                            </graphic>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="33.0" layoutY="164.0" text="Weight:" textFill="#089bab">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="33.0" layoutY="164.0" text="Number OF Operations" textFill="#089bab">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <TextField fx:id="weight" disable="true" prefHeight="31.0" prefWidth="357.0" promptText="Weight" styleClass="field" />
+                              <TextField fx:id="numOfOperation" disable="true" prefHeight="31.0" prefWidth="357.0" promptText="Weight" styleClass="field" text="Number Of Operations" />
                            </graphic>
                         </Label>
                      </children>
@@ -179,20 +169,20 @@
                               <Font name="Baskerville Old Face" size="24.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="23.0" layoutY="77.0" text="Last Appointment: " textFill="#089bab">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="23.0" layoutY="77.0" text="Hospital" textFill="#089bab">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <TextField fx:id="lastAppointment" disable="true" prefHeight="39.0" prefWidth="216.0" promptText="Last Appointment" styleClass="field" />
+                              <TextField fx:id="hospital" disable="true" prefHeight="39.0" prefWidth="216.0" promptText="Hospital Name" styleClass="field" />
                            </graphic>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="26.0" layoutY="112.0" text="Current Disease:" textFill="#089bab">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="26.0" layoutY="112.0" text="Hospital Address" textFill="#089bab">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                            <graphic>
-                              <TextField fx:id="currentDisease" disable="true" prefHeight="39.0" prefWidth="246.0" promptText="Current Disease" styleClass="field" />
+                              <TextField fx:id="hospitalAddress" disable="true" prefHeight="39.0" prefWidth="246.0" promptText="Hospital Address" styleClass="field" />
                            </graphic>
                         </Label>
                      </children>

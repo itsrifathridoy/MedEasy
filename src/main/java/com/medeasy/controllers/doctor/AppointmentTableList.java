@@ -84,7 +84,7 @@ public class AppointmentTableList implements Initializable {
         fadeTransition.setToValue(1);
         fadeTransition.play();
         ArrayList<Appointment> appointments = new ArrayList<>();
-        String searchSQL = "select * from appointments where (name LIKE ? OR status LIKE ?)";
+        String searchSQL = "select * from appointments where doctorID = ? AND (name LIKE ? OR status LIKE ?)";
         HashMap<Integer,Object> searchHash = new HashMap<>();
         searchHash.put(1,"%"+((TextField)event.getSource()).getText()+"%");
         searchHash.put(2,"%"+((TextField)event.getSource()).getText()+"%");

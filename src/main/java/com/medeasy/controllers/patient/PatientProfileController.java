@@ -1,62 +1,68 @@
 package com.medeasy.controllers.patient;
 
+import com.medeasy.models.Doctor;
 import com.medeasy.models.Patient;
 import com.medeasy.util.DatabaseConnection;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class ProfileController implements Initializable {
+public class PatientProfileController implements Initializable {
 
     @FXML
-    private Label name;
+    private TextField name;
 
     @FXML
-    private Label fatherName;
+    private TextField fatherName;
 
     @FXML
-    private Label motherName;
+    private TextField motherName;
 
     @FXML
-    private Label dob;
+    private DatePicker dob;
     @FXML
     private Rectangle img;
     @FXML
-    private Label email;
+    private TextField email;
 
     @FXML
-    private Label address;
+    private TextField address;
 
     @FXML
-    private Label username;
+    private TextField username;
 
     @FXML
-    private Label bloodGroup;
+    private TextField bloodGroup;
 
     @FXML
-    private Label height;
+    private TextField height;
 
     @FXML
-    private Label weight;
+    private TextField weight;
 
     @FXML
-    private Label lastAppointment;
+    private TextField lastAppointment;
 
     @FXML
-    private Label currentDisease;
+    private TextField currentDisease;
     private String userID;
 
     public void setUserID(String userID) {
@@ -72,10 +78,10 @@ public class ProfileController implements Initializable {
                 name.setText(patient.getPersonNameBn());
                 fatherName.setText(patient.getFatherNameBn());
                 motherName.setText(patient.getMotherNameBn());
-                dob.setText(patient.getDob());
+                dob.setValue(LocalDate.parse(patient.getDob(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                 bloodGroup.setText(patient.getBloodGroup());
                 currentDisease.setText(patient.getDisease());
-                lastAppointment.setText(patient.getLastAppointment());
+
                 username.setText(patient.getUsername());
                 String path = "temp/"+patient.getUserID()+".png";
                 if(patient.getBlob()!=null) {
@@ -95,6 +101,21 @@ public class ProfileController implements Initializable {
                 address.setText(patient.getAddressBn());
                 height.setText(patient.getHeight());
                 weight.setText(patient.getWeight());
+
+                String sql = "SELECT doctorID FROM appointments WHERE userID = ? ORDER BY `appointments`.`time` DESC";
+                Connection connection = databaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1,userID);
+                ResultSet resultSet = statement.executeQuery();
+                if(resultSet.next())
+                {
+                    Doctor doctor = databaseConnection.getDoctor(resultSet.getString(1),"userID");
+                    lastAppointment.setText(doctor.getPersonNameEn());;
+                }
+
+
+
+
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {

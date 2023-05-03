@@ -148,6 +148,7 @@ public class DoctorHomeController implements Initializable {
         return appointments;
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
@@ -258,5 +259,19 @@ public class DoctorHomeController implements Initializable {
         Thread thread =new Thread(databaseReadCall);
         thread.setDaemon(true);
         thread.start();
+    }
+    @FXML
+    void appointments(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/medeasy/views/doctors/appointmentTableList.fxml"));
+            Parent root = loader.load();
+            AppointmentTableList controller = loader.getController();
+            controller.setUserID(doctorID);
+            rootPane.setCenter(root);
+            rootPane.setRight(null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

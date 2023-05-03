@@ -1,51 +1,36 @@
 package com.medeasy.controllers.patient;
 
 import com.medeasy.chatsocket.chat.controller.ClientFormController;
-import com.medeasy.controllers.admin.AdminHomeController;
-import com.medeasy.controllers.admin.DoctorCardController;
 import com.medeasy.controllers.admin.DoctorListController;
-import com.medeasy.controllers.admin.PatientCardController;
-import com.medeasy.controllers.doctor.DoctorHomeController;
 import com.medeasy.models.Appointment;
 import com.medeasy.models.Doctor;
 import com.medeasy.models.Patient;
 import com.medeasy.util.*;
-import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class PatientHomeController implements Initializable {
@@ -178,7 +163,7 @@ public class PatientHomeController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/com/medeasy/views/patients/profile.fxml"));
         Parent root = loader.load();
-        ProfileController controller = loader.getController();
+        PatientProfileController controller = loader.getController();
         controller.setUserID(userID);
         rootPane.setCenter(root);
         rootPane.setRight(null);
