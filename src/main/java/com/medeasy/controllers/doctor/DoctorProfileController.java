@@ -1,11 +1,13 @@
 package com.medeasy.controllers.doctor;
 
+import com.jfoenix.controls.JFXButton;
 import com.medeasy.models.Doctor;
 import com.medeasy.models.Patient;
 import com.medeasy.util.DatabaseConnection;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -67,6 +69,8 @@ public class DoctorProfileController implements Initializable {
 
     @FXML
     private TextField hospitalAddress;
+    @FXML
+    private JFXButton edit;
     private String userID;
 
     public void setUserID(String userID) {
@@ -125,5 +129,41 @@ public class DoctorProfileController implements Initializable {
             }
 
         });
+    }
+    @FXML
+    void edit(ActionEvent event) {
+        if(edit.getText().equals("Edit")) {
+            name.setDisable(false);
+            gender.setDisable(false);
+            dob.setDisable(false);
+            designation.setDisable(false);
+            dob.setDisable(false);
+            speciality.setDisable(false);
+            email.setDisable(false);
+            mobile.setDisable(false);
+            qualification.setDisable(false);
+            hospital.setDisable(false);
+            hospitalAddress.setDisable(false);
+            numOfOperation.setDisable(false);
+            edit.setStyle("-fx-border-color: gray");
+            edit.setText("Save");
+        }
+        else
+        {
+            name.setDisable(true);
+            gender.setDisable(true);
+            dob.setDisable(true);
+            designation.setDisable(true);
+            dob.setDisable(true);
+            speciality.setDisable(true);
+            email.setDisable(true);
+            mobile.setDisable(true);
+            qualification.setDisable(true);
+            hospital.setDisable(true);
+            hospitalAddress.setDisable(true);
+            numOfOperation.setDisable(true);
+            edit.setStyle("-fx-border-color: gray");
+            edit.setText("Edit");
+        }
     }
 }

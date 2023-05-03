@@ -2,6 +2,7 @@ package com.medeasy.controllers.admin;
 
 import com.medeasy.chatsocket.chat.controller.ClientFormController;
 import com.medeasy.models.Admin;
+import com.medeasy.models.Doctor;
 import com.medeasy.util.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -87,6 +88,7 @@ public class AdminHomeController extends Thread implements Initializable {
         Scene scene = new Scene(fxmlScene.getRoot());
         AdminHomeController controller = (AdminHomeController) fxmlScene.getController();
         controller.setEmail(email);
+        controller.setUserID(userID);
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -181,8 +183,9 @@ public class AdminHomeController extends Thread implements Initializable {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/com/medeasy/views/doctors/doctorsList.fxml"));
-
                 Parent root = loader.load();
+                DoctorListController controller = loader.getController();
+                controller.setUserID(userID);
                 rootPane.setCenter(root);
                 rootPane.setRight(null);
             } catch (IOException e) {
