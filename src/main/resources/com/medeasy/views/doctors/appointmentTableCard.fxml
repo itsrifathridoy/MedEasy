@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="972.0" spacing="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.doctor.AppointmentTableCardController">
+   <children>
+      <Label fx:id="name" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="438.0" text="Name" textAlignment="CENTER" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="description" alignment="CENTER" prefHeight="70.0" prefWidth="417.0" text="Description" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" onAction="#approval" prefHeight="62.0" prefWidth="288.0" style="-fx-background-color: #48C8A7; -fx-background-radius: 20;" text="Approved" textFill="WHITE">
+         <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </HBox.margin>
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="900.0" layoutY="15.0" onAction="#view" prefHeight="62.0" prefWidth="215.0" style="-fx-background-color: #48C8A7; -fx-background-radius: 20;" text=" " textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/view_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </HBox.margin>
+      </JFXButton>
+   </children>
+</HBox>

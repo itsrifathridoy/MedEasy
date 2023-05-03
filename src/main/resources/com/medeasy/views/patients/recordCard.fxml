@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="972.0" spacing="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.patient.RecordCardController">
+   <children>
+      <Label fx:id="title" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="362.0" text="Title" textAlignment="CENTER" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="type" alignment="CENTER" prefHeight="70.0" prefWidth="318.0" text="Type" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="doctorName" alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="10.0" prefHeight="70.0" prefWidth="342.0" text="Doctor Name" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="date" alignment="CENTER" layoutX="254.0" layoutY="10.0" prefHeight="70.0" prefWidth="295.0" text="Date" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Label>
+      <JFXButton buttonType="RAISED" onAction="#view" prefHeight="62.0" prefWidth="176.0" style="-fx-background-color: #48C8A7; -fx-background-radius: 20;" text=" " textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/view_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </HBox.margin>
+      </JFXButton>
+   </children>
+</HBox>

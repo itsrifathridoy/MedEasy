@@ -3,6 +3,7 @@ package com.medeasy.util;
 import com.medeasy.models.Admin;
 import com.medeasy.models.Doctor;
 import com.medeasy.models.Patient;
+import com.medeasy.models.User;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.concurrent.Task;
 
@@ -33,6 +34,22 @@ public class DatabaseConnection {
     public ResultSet queryData(String sql) throws SQLException {
         Statement statement = connection.createStatement();
         return statement.executeQuery(sql);
+    }
+
+    public User getUser(String emailOrUserID, String cell) throws SQLException {
+
+        User user = new User();
+        String sql = "SELECT userID,email,role FROM `users` WHERE" + "`" + cell + "` LIKE '" + emailOrUserID + "'";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            user.setUserID(resultSet.getString(1));
+            user.setRole(resultSet.getString(2));
+            user.setEmail(resultSet.getString(3));
+
+        }
+        return user;
+
     }
 
     public Patient getPatient(String emailOrBirthId, String cell) throws SQLException {

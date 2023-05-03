@@ -3,6 +3,7 @@ package com.medeasy.controllers.patient;
 import com.medeasy.chatsocket.chat.controller.ClientFormController;
 import com.medeasy.controllers.admin.AdminHomeController;
 import com.medeasy.controllers.admin.DoctorCardController;
+import com.medeasy.controllers.admin.DoctorListController;
 import com.medeasy.controllers.admin.PatientCardController;
 import com.medeasy.controllers.doctor.DoctorHomeController;
 import com.medeasy.models.Appointment;
@@ -94,6 +95,8 @@ public class PatientHomeController implements Initializable {
     @FXML
     private Label Medtime;
     private String userID;
+    private Patient patient;
+
     private ArrayList<Patient> patientList;
 
     @FXML
@@ -101,13 +104,12 @@ public class PatientHomeController implements Initializable {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/medeasy/views/chatBox/chatBox.fxml"));
+            loader.setLocation(getClass().getResource("/com/medeasy/views/chatbox.fxml"));
 
             Parent root = loader.load();
             ClientFormController controller = loader.getController();
             System.out.println(controller);
-            System.out.println(getClass().getSimpleName()+userID);
-            controller.setUsername(userID);
+            controller.setUsername(patient.getUsername());
             rootPane.setCenter(root);
             rootPane.setRight(null);
             rootPane.setTop(null);
@@ -132,11 +134,17 @@ public class PatientHomeController implements Initializable {
     }
     @FXML
     void findBlood(ActionEvent event) {
-
+        FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/others/bloodBanks.fxml");
+        BloodBankController controller = (BloodBankController) fxmlScene.getController();
+        controller.setUserID(userID);
+        rootPane.setCenter(fxmlScene.getRoot());
+        rootPane.setRight(null);
     }
     @FXML
     void records(ActionEvent event) {
         FXMLScene fxmlScene = FXMLScene.load("/com/medeasy/views/patients/records.fxml");
+        RecordController controller = (RecordController) fxmlScene.getController();
+        controller.setUserID(userID);
         rootPane.setCenter(fxmlScene.getRoot());
         rootPane.setRight(null);
     }
@@ -147,6 +155,10 @@ public class PatientHomeController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/com/medeasy/views/patients/doctorsList.fxml"));
             Parent root = loader.load();
+            DoctorListController controller = loader.getController();
+            System.out.println(getClass().getSimpleName()+userID);
+            controller.setUserID(userID);
+
             rootPane.setCenter(root);
             rootPane.setRight(null);
         } catch (IOException e) {
@@ -197,7 +209,7 @@ public class PatientHomeController implements Initializable {
         Platform.runLater(()->{
             try {
                 DatabaseConnection databaseConnection = new DatabaseConnection();
-                Patient patient =databaseConnection.getPatient(userID,"userID");
+                patient =databaseConnection.getPatient(userID,"userID");
                 name.setText(patient.getUsername());
                 grettings.setText(new GreetingMaker(LocalTime.now()).printTimeOfDay());
                 DateFormat timeFormat = new SimpleDateFormat("hh.mm aa");

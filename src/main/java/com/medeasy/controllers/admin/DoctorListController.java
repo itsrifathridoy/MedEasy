@@ -5,6 +5,7 @@ import com.medeasy.util.DatabaseConnection;
 import com.medeasy.util.DatabaseReadCall;
 import com.medeasy.util.FXMLScene;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +35,12 @@ public class DoctorListController implements Initializable {
     private GridPane doctorContainer;
     @FXML
     private TextField searchBox;
+    private String userID;
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     private ArrayList<Doctor> getDoctorList()
     {
         ArrayList<Doctor> doctors = new ArrayList<>();
@@ -56,34 +63,39 @@ public class DoctorListController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        FadeTransition fadeTransition = new FadeTransition();
-        fadeTransition.setNode(doctorContainer);
-        fadeTransition.setDuration(Duration.seconds(1));
-        fadeTransition.setFromValue(0);
-        fadeTransition.setToValue(1);
-        fadeTransition.play();
-        if(searchBox.getText().isEmpty()) {
-            int col = 0;
-            int row = 1;
-            for (Doctor doctor : getDoctorList()) {
-                try {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/com/medeasy/views/doctors/doctorCard.fxml"));
-                    Parent root = loader.load();
-                    DoctorCardController controller = loader.getController();
-                    controller.setDoctor(doctor);
-                    if (col == 4) {
-                        col = 0;
-                        ++row;
-                    }
-                    doctorContainer.add(root, col++, row);
-                    GridPane.setMargin(root, new Insets(20));
+        Platform.runLater(()->{
+            FadeTransition fadeTransition = new FadeTransition();
+            fadeTransition.setNode(doctorContainer);
+            fadeTransition.setDuration(Duration.seconds(1));
+            fadeTransition.setFromValue(0);
+            fadeTransition.setToValue(1);
+            fadeTransition.play();
+            if(searchBox.getText().isEmpty()) {
+                int col = 0;
+                int row = 1;
+                for (Doctor doctor : getDoctorList()) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource("/com/medeasy/views/doctors/doctorCard.fxml"));
+                        Parent root = loader.load();
+                        DoctorCardController controller = loader.getController();
+                        controller.setDoctor(doctor);
+                        System.out.println(userID);
+                        controller.setUserID(userID);
+                        if (col == 4) {
+                            col = 0;
+                            ++row;
+                        }
+                        doctorContainer.add(root, col++, row);
+                        GridPane.setMargin(root, new Insets(20));
 
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
-        }
+        });
+
     }
     @FXML
     void addDoctor(ActionEvent event) {
@@ -126,6 +138,7 @@ public class DoctorListController implements Initializable {
                             loader.setLocation(getClass().getResource("/com/medeasy/views/doctors/doctorCard.fxml"));
                             Parent root = loader.load();
                             DoctorCardController controller = loader.getController();
+                            controller.setUserID(userID);
                             controller.setDoctor(doctor);
                             if (col == 4) {
                                 col = 0;

@@ -151,3 +151,47 @@
 .table-view .column-header .label {
     -fx-text-fill: white ;
 }
+.scroll-pane > .viewport {
+    -fx-background-color: #d0e3f3;
+    -fx-border-color:  transparent;
+}
+
+
+.scroll-pane .scroll-bar:vertical{
+    -fx-background-color:  transparent;
+    -fx-border-color:  transparent;
+}
+.scroll-pane .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0cm;
+    -fx-border-radius:0cm;
+
+}
+.scroll-pane .scroll-bar:vertical .decrement-button{
+    -fx-background-color: transparent;
+    -fx-border-color:  transparent;
+    -fx-background-radius: 0cm;
+    -fx-border-radius:0cm;
+    -fx-padding: 3px;
+}
+.scroll-pane .scroll-bar:horizontal .decrement-button{
+    -fx-background-color: transparent;
+    -fx-border-color:  transparent;
+    -fx-background-radius: 0cm;
+    -fx-border-radius:0cm;
+    -fx-padding: 3px;
+}
+.scroll-pane .scroll-bar:horizontal{
+    -fx-background-color:  transparent;
+    -fx-border-color:  transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb{
+    -fx-background-color: #A2B8BE;
+    -fx-background-radius: 40;
+}
+.scroll-pane .scroll-bar:horizontal .thumb{
+    -fx-background-color:#A2B8BE;
+    -fx-background-radius: 40;
+}

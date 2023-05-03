@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="TOP_CENTER" prefHeight="70.0" prefWidth="972.0" spacing="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.patient.BloodBankCardController">
+   <children>
+      <Label fx:id="name" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="547.0" text="Name" textAlignment="CENTER" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="phone" alignment="CENTER" prefHeight="70.0" prefWidth="458.0" text="Phone" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="address" alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="10.0" prefHeight="70.0" prefWidth="391.0" text="Address" textFill="#6c7e8a" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</HBox>

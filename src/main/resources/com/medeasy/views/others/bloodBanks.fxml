@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="731.0" prefWidth="1080.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medeasy.controllers.patient.BloodBankController">
+   <children>
+      <BorderPane layoutX="75.0" layoutY="107.0" prefHeight="613.0" prefWidth="980.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="107.0">
+         <top>
+            <HBox prefHeight="51.0" prefWidth="744.0" spacing="10.0" style="-fx-background-color: #48c8a7;" BorderPane.alignment="CENTER">
+               <children>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <Label alignment="CENTER" prefHeight="51.0" prefWidth="455.0" text="Name">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="16.0" layoutY="10.0" prefHeight="51.0" prefWidth="351.0" text="Phone">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="61.0" layoutY="10.0" prefHeight="51.0" prefWidth="350.0" text="Address">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <ScrollPane prefWidth="902.0" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox fx:id="contrainer" />
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+      <TextField fx:id="searchBox" layoutX="750.9999999999999" layoutY="29.0" onKeyTyped="#search" prefHeight="34.0" prefWidth="253.0" promptText="Search" />
+   </children>
+</AnchorPane>
