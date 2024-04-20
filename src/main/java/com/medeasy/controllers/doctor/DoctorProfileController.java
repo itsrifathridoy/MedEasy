@@ -22,10 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -131,7 +128,7 @@ public class DoctorProfileController implements Initializable {
         });
     }
     @FXML
-    void edit(ActionEvent event) {
+    void edit(ActionEvent event) throws SQLException, ClassNotFoundException {
         if(edit.getText().equals("Edit")) {
             name.setDisable(false);
             gender.setDisable(false);
@@ -147,6 +144,26 @@ public class DoctorProfileController implements Initializable {
             numOfOperation.setDisable(false);
             edit.setStyle("-fx-border-color: gray");
             edit.setText("Save");
+            String sql =  "UPDATE `doctors` SET name = ?, gender = ?, dob = ?, email = ?, mobile = ?, qualification = ?, hospital = ?, hospitalAddress = ?, numOfOperations = ?, specialities = ?";
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1,name.getText());
+            statement.setString(2,gender.getSelectionModel().getSelectedItem());
+            statement.setString(3,dob.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            statement.setString(3,email.getText());
+            statement.setString(4,mobile.getText());
+            statement.setString(5,qualification.getText());
+            statement.setString(5,hospital.getText());
+            statement.setString(5,hospitalAddress.getText());
+            statement.setString(5,numOfOperation.getText());
+            statement.setString(5,speciality.getText());
+            int row  = statement.executeUpdate();
+            if(row>0)
+            {
+
+            }
+
         }
         else
         {
