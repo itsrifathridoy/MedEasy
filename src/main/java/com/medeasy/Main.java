@@ -55,6 +55,7 @@ public class Main extends Application {
             Scene scene = new Scene(fxmlScene.getRoot(), Color.TRANSPARENT);
             AdminHomeController controller = (AdminHomeController) fxmlScene.getController();
             controller.setEmail(email);
+            controller.setUserID(userID);
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();

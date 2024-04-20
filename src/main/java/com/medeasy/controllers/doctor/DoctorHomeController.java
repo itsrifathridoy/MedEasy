@@ -1,7 +1,9 @@
 package com.medeasy.controllers.doctor;
 
+import com.medeasy.chatsocket.chat.controller.ClientFormController;
 import com.medeasy.controllers.admin.AdminHomeController;
 import com.medeasy.controllers.admin.DoctorCardController;
+import com.medeasy.controllers.admin.DoctorListController;
 import com.medeasy.controllers.admin.PatientCardController;
 import com.medeasy.models.Appointment;
 import com.medeasy.models.Doctor;
@@ -65,10 +67,29 @@ public class DoctorHomeController implements Initializable {
     private TextField searchBox;
     private ArrayList<Appointment> appointments;
     private ArrayList<Patient> patientList;
+    private String userID;
+    private Doctor doctor;
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
     @FXML
     void chatbox(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/medeasy/views/chatbox.fxml"));
 
+            Parent root = loader.load();
+            ClientFormController controller = loader.getController();
+            System.out.println(controller);
+            controller.setUsername(doctor.getPersonNameEn());
+            rootPane.setCenter(root);
+            rootPane.setRight(null);
+            rootPane.setTop(null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -88,6 +109,8 @@ public class DoctorHomeController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/com/medeasy/views/patients/doctorsList.fxml"));
             Parent root = loader.load();
+            DoctorListController controller = loader.getController();
+            controller.setUserID(doctorID);
             rootPane.setCenter(root);
             rootPane.setRight(null);
         } catch (IOException e) {
@@ -119,8 +142,15 @@ public class DoctorHomeController implements Initializable {
     }
 
     @FXML
-    void profile(ActionEvent event) {
+    void profile(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/medeasy/views/doctors/profile.fxml"));
 
+        Parent root = loader.load();
+        DoctorProfileController controller = loader.getController();
+        controller.setUserID(doctorID);
+        rootPane.setCenter(root);
+        rootPane.setRight(null);
     }
 
     private String doctorID;
@@ -178,10 +208,10 @@ public class DoctorHomeController implements Initializable {
         String sql = "SELECT * FROM doctors WHERE userID = '" + doctorID + "'";
         try {
             DatabaseConnection databaseConnection = new DatabaseConnection();
-            Doctor doctor = databaseConnection.getDoctor(doctorID, "userID");
+            doctor = databaseConnection.getDoctor(doctorID, "userID");
             System.out.println(doctorID);
             name.setText(doctor.getPersonNameEn());
-            patients.setText("You have " + doctor.getAppointments() + " appointments remaining");
+            patients.setText("You have " + getAppointmentList().size() + " appointments remaining");
             DateFormat timeFormat = new SimpleDateFormat("hh.mm aa");
             String timeString = timeFormat.format(new Date()).toString();
             time.setText(timeString);
